@@ -27,28 +27,32 @@ public class Homeihm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cmdVoitures = new javax.swing.JButton();
+        cmdContrat = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        ButtunClients = new javax.swing.JButton();
+        cmdClients = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setToolTipText("");
 
-        jButton1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.borderColor"));
-        jButton1.setText("Gestion des voitures");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        cmdVoitures.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.borderColor"));
+        cmdVoitures.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cmdVoitures.setForeground(new java.awt.Color(255, 255, 255));
+        cmdVoitures.setText("Gestion des voitures");
+        cmdVoitures.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                cmdVoituresActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.borderColor"));
-        jButton2.setText("Gestion des Contrat");
+        cmdContrat.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.borderColor"));
+        cmdContrat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cmdContrat.setForeground(new java.awt.Color(255, 255, 255));
+        cmdContrat.setText("Gestion des Contrat");
 
         jLabel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -57,11 +61,13 @@ public class Homeihm extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\MohammedCHamakh\\Documents\\MiniProjet\\iconHome.jpg")); // NOI18N
 
-        ButtunClients.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.borderColor"));
-        ButtunClients.setText("Gestion des Clients");
-        ButtunClients.addActionListener(new java.awt.event.ActionListener() {
+        cmdClients.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.borderColor"));
+        cmdClients.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cmdClients.setForeground(new java.awt.Color(255, 255, 255));
+        cmdClients.setText("Gestion des Clients");
+        cmdClients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtunClientsActionPerformed(evt);
+                cmdClientsActionPerformed(evt);
             }
         });
 
@@ -72,32 +78,34 @@ public class Homeihm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ButtunClients, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmdVoitures, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmdClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cmdContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(ButtunClients, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(116, 116, 116)
+                        .addComponent(cmdClients, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(cmdVoitures, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(cmdContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(2339, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,15 +126,15 @@ public class Homeihm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void cmdVoituresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdVoituresActionPerformed
         
  new GestionVoitureIHM().setVisible(true);
             this.dispose(); 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_cmdVoituresActionPerformed
 
-    private void ButtunClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtunClientsActionPerformed
+    private void cmdClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdClientsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButtunClientsActionPerformed
+    }//GEN-LAST:event_cmdClientsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,9 +172,9 @@ public class Homeihm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtunClients;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton cmdClients;
+    private javax.swing.JButton cmdContrat;
+    private javax.swing.JButton cmdVoitures;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
