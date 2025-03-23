@@ -1,0 +1,1 @@
+"# Getsion-Locatio  se projet a pour objectif de comprendre le cycle de vie d'une logiciel depuis le etude de domain jusqua le deploiment essontiale si de maitrise le cycle de la 1er degrer apres comprendre le test unitre aussi ulisation de outile de couvrage de code et comprehension de outil de qualiter pmd et .. " 
