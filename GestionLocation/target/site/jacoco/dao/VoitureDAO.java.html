@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VoitureDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GestionLocation</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">VoitureDAO.java</span></div><h1>VoitureDAO.java</h1><pre class="source lang-java linenums">package dao;
+
+
+import entity.Voiture;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class VoitureDAO {
+    private final Database database;
+    
+<span class="fc" id="L12">    public VoitureDAO() {</span>
+<span class="fc" id="L13">        this.database = Database.getInstance();</span>
+<span class="fc" id="L14">    }</span>
+    
+    public int create(Voiture voiture) throws SQLException {
+<span class="fc" id="L17">        String query = &quot;INSERT INTO Voiture (Marque, Modèle, Année, Immatriculation, &quot; +</span>
+                       &quot;TypeCarburant, Kilométrage, Couleur, NombrePortes, &quot; +
+                       &quot;TypeTransmission, NuméroChâssis, Prix, Etat) &quot; +
+                       &quot;VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;;
+        
+<span class="fc" id="L22">        try (Connection connection = database.getConnection();</span>
+<span class="fc" id="L23">             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {</span>
+            
+<span class="fc" id="L25">            ps.setString(1, voiture.getMarque());</span>
+<span class="fc" id="L26">            ps.setString(2, voiture.getModele());</span>
+<span class="fc" id="L27">            ps.setString(3, voiture.getAnnee());</span>
+<span class="fc" id="L28">            ps.setString(4, voiture.getImmatriculation());</span>
+<span class="fc" id="L29">            ps.setString(5, voiture.getTypeCarburant());</span>
+<span class="fc" id="L30">            ps.setString(6, voiture.getKilometrage());</span>
+<span class="fc" id="L31">            ps.setString(7, voiture.getCouleur());</span>
+<span class="fc" id="L32">            ps.setString(8, voiture.getNombrePortes());</span>
+<span class="fc" id="L33">            ps.setString(9, voiture.getTypeTransmission());</span>
+<span class="fc" id="L34">            ps.setString(10, voiture.getNumeroChâssis());</span>
+<span class="fc" id="L35">            ps.setString(11, voiture.getPrix());</span>
+<span class="fc" id="L36">            ps.setString(12, voiture.getEtat());</span>
+            
+<span class="fc" id="L38">            ps.executeUpdate();</span>
+<span class="fc" id="L39">            try (ResultSet rs = ps.getGeneratedKeys()) {</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">                if (rs.next()) {</span>
+<span class="fc" id="L41">                    int newId = rs.getInt(1);</span>
+<span class="fc" id="L42">                    voiture.setId(newId);</span>
+<span class="fc" id="L43">                    return newId;</span>
+                }
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            }</span>
+<span class="pc bpc" id="L46" title="2 of 4 branches missed.">        }</span>
+<span class="nc" id="L47">        return -1;</span>
+    }
+    
+    public int update(Voiture voiture) throws SQLException {
+<span class="fc" id="L51">        String query = &quot;UPDATE Voiture SET Marque = ?, Modèle = ?, Année = ?, &quot; +</span>
+                       &quot;Immatriculation = ?, TypeCarburant = ?, Kilométrage = ?, &quot; +
+                       &quot;Couleur = ?, NombrePortes = ?, TypeTransmission = ?, &quot; +
+                       &quot;NuméroChâssis = ?, Prix = ?, Etat = ? &quot; +
+                       &quot;WHERE Immatriculation = ?&quot;;
+        
+<span class="fc" id="L57">        try (Connection connection = database.getConnection();</span>
+<span class="fc" id="L58">             PreparedStatement ps = connection.prepareStatement(query)) {</span>
+            
+<span class="fc" id="L60">            ps.setString(1, voiture.getMarque());</span>
+<span class="fc" id="L61">            ps.setString(2, voiture.getModele());</span>
+<span class="fc" id="L62">            ps.setString(3, voiture.getAnnee());</span>
+<span class="fc" id="L63">            ps.setString(4, voiture.getImmatriculation());</span>
+<span class="fc" id="L64">            ps.setString(5, voiture.getTypeCarburant());</span>
+<span class="fc" id="L65">            ps.setString(6, voiture.getKilometrage());</span>
+<span class="fc" id="L66">            ps.setString(7, voiture.getCouleur());</span>
+<span class="fc" id="L67">            ps.setString(8, voiture.getNombrePortes());</span>
+<span class="fc" id="L68">            ps.setString(9, voiture.getTypeTransmission());</span>
+<span class="fc" id="L69">            ps.setString(10, voiture.getNumeroChâssis());</span>
+<span class="fc" id="L70">            ps.setString(11, voiture.getPrix());</span>
+<span class="fc" id="L71">            ps.setString(12, voiture.getEtat());</span>
+<span class="fc" id="L72">            ps.setString(13, voiture.getImmatriculation());</span>
+            
+<span class="fc" id="L74">           return  ps.executeUpdate();</span>
+        }
+    }
+    
+    public boolean delete(String mat) throws SQLException {
+<span class="fc" id="L79">        String query = &quot;DELETE FROM Voiture WHERE Immatriculation = ?&quot;;</span>
+        
+<span class="fc" id="L81">        try (Connection connection = database.getConnection();</span>
+<span class="fc" id="L82">             PreparedStatement ps = connection.prepareStatement(query)) {</span>
+            
+<span class="fc" id="L84">            ps.setString(1, mat);</span>
+<span class="fc" id="L85">            ps.executeUpdate();</span>
+<span class="fc" id="L86">            return true;</span>
+<span class="nc" id="L87">        }catch(Exception ex){</span>
+<span class="nc" id="L88">            ex.printStackTrace();</span>
+<span class="nc" id="L89">            return false;</span>
+        }
+    }
+    
+    public List&lt;Voiture&gt; getAll() throws SQLException {
+<span class="fc" id="L94">        List&lt;Voiture&gt; voitures = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L95">        String query = &quot;SELECT * FROM Voiture&quot;;</span>
+        
+<span class="fc" id="L97">        try (Connection connection = database.getConnection();</span>
+<span class="fc" id="L98">             PreparedStatement ps = connection.prepareStatement(query);</span>
+<span class="fc" id="L99">             ResultSet rs = ps.executeQuery()) {</span>
+            
+<span class="fc bfc" id="L101" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L102">                voitures.add(mapResultSetToVoiture(rs));</span>
+            }
+        }
+<span class="fc" id="L105">        return voitures;</span>
+    }
+    
+    
+    
+    public List&lt;Voiture&gt; getAllByMarqueOrModele(String marqueOuModele) throws SQLException {
+<span class="fc" id="L111">        List&lt;Voiture&gt; voitures = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L112">        String query = &quot;SELECT * FROM Voiture WHERE Marque LIKE ? OR Modèle LIKE ?&quot;;</span>
+        
+<span class="fc" id="L114">        try (Connection connection = database.getConnection();</span>
+<span class="fc" id="L115">             PreparedStatement ps = connection.prepareStatement(query)) {</span>
+            
+<span class="fc" id="L117">            ps.setString(1, &quot;%&quot; + marqueOuModele + &quot;%&quot;);</span>
+<span class="fc" id="L118">            ps.setString(2, &quot;%&quot; + marqueOuModele + &quot;%&quot;);</span>
+            
+<span class="fc" id="L120">            try (ResultSet rs = ps.executeQuery()) {</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">                while (rs.next()) {</span>
+<span class="fc" id="L122">                    voitures.add(mapResultSetToVoiture(rs));</span>
+                }
+            }
+        }
+<span class="fc" id="L126">        return voitures;</span>
+    }
+     public Voiture getOne(String matr) throws SQLException {
+<span class="fc" id="L129">    Voiture voiture = null;</span>
+<span class="fc" id="L130">    String query = &quot;SELECT * FROM Voiture WHERE Immatriculation = ?&quot;; // Correction: Suppression de `%`</span>
+
+<span class="fc" id="L132">    try (Connection connection = database.getConnection();</span>
+<span class="fc" id="L133">         PreparedStatement ps = connection.prepareStatement(query)) {</span>
+
+<span class="fc" id="L135">        ps.setString(1, matr); // Suppression de &quot;%&quot; pour correspondance exacte</span>
+
+<span class="fc" id="L137">        try (ResultSet rs = ps.executeQuery()) {</span>
+<span class="fc bfc" id="L138" title="All 2 branches covered.">            if (rs.next()) { </span>
+<span class="fc" id="L139">                voiture = mapResultSetToVoiture(rs);</span>
+            }
+        }
+    }
+<span class="fc" id="L143">    return voiture;</span>
+}
+
+    
+    private Voiture mapResultSetToVoiture(ResultSet rs) throws SQLException {
+<span class="fc" id="L148">        Voiture voiture = new Voiture();</span>
+<span class="fc" id="L149">        voiture.setId(rs.getInt(&quot;ID&quot;));</span>
+       
+<span class="fc" id="L151">        voiture.setMarque(rs.getString(&quot;Marque&quot;));</span>
+<span class="fc" id="L152">        voiture.setModele(rs.getString(&quot;Modèle&quot;));</span>
+<span class="fc" id="L153">        voiture.setAnnee(rs.getString(&quot;Année&quot;));</span>
+<span class="fc" id="L154">        voiture.setImmatriculation(rs.getString(&quot;Immatriculation&quot;));</span>
+<span class="fc" id="L155">        voiture.setTypeCarburant(rs.getString(&quot;TypeCarburant&quot;));</span>
+<span class="fc" id="L156">        voiture.setKilometrage(rs.getString(&quot;Kilométrage&quot;));</span>
+<span class="fc" id="L157">        voiture.setCouleur(rs.getString(&quot;Couleur&quot;));</span>
+<span class="fc" id="L158">        voiture.setNombrePortes(rs.getString(&quot;NombrePortes&quot;));</span>
+<span class="fc" id="L159">        voiture.setTypeTransmission(rs.getString(&quot;TypeTransmission&quot;));</span>
+<span class="fc" id="L160">        voiture.setNumeroChâssis(rs.getString(&quot;NuméroChâssis&quot;));</span>
+<span class="fc" id="L161">        voiture.setPrix(rs.getString(&quot;Prix&quot;));</span>
+<span class="fc" id="L162">        voiture.setEtat(rs.getString(&quot;Etat&quot;));</span>
+<span class="fc" id="L163">        return voiture;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

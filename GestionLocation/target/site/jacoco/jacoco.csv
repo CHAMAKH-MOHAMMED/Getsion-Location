@@ -1,0 +1,18 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+GestionLocation,dao,Database,27,59,4,6,12,19,4,6,1,4
+GestionLocation,dao,VoitureDAO,7,377,4,10,4,91,4,11,0,8
+GestionLocation,dao,DatabaseTest,25,63,4,6,10,21,4,6,0,5
+GestionLocation,controlleur,VoitureController,47,65,3,5,21,21,4,8,1,7
+GestionLocation,entity,Voiture,0,226,0,0,0,72,0,31,0,31
+GestionLocation,ihm,Homeihm.new Runnable() {...},9,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,Homeihm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,Homeihm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,GestionVoitureIHM,2110,0,34,0,438,0,27,0,10,0
+GestionLocation,ihm,GestionVoitureIHM.new WindowAdapter() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,GestionVoitureIHM.new Runnable() {...},9,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,GestionVoitureIHM.new KeyAdapter() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,GestionVoitureIHM.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,GestionVoitureIHM.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,GestionVoitureIHM.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,GestionVoitureIHM.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
+GestionLocation,ihm,Homeihm,448,0,4,0,99,0,7,0,5,0
