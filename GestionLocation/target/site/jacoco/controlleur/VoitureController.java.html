@@ -95,7 +95,7 @@ public class VoitureController {
     public List&lt;Voiture&gt; rechercherParImmatriculation(String immatriculation) {
         try {
             // Return an Optional containing the car or an empty Optional if not found
-<span class="nc" id="L98">            return (voitureDAO.getAllByMarqueOrModele(immatriculation));</span>
+<span class="fc" id="L98">            return (voitureDAO.getAllByMarqueOrModele(immatriculation));</span>
 <span class="nc" id="L99">        } catch (Exception e) {</span>
 <span class="nc" id="L100">            e.printStackTrace();</span>
 <span class="nc" id="L101">            return null;</span>

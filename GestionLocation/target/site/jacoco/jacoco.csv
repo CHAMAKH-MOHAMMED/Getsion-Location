@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 GestionLocation,dao,Database,27,59,4,6,12,19,4,6,1,4
 GestionLocation,dao,VoitureDAO,7,377,4,10,4,91,4,11,0,8
 GestionLocation,dao,DatabaseTest,25,63,4,6,10,21,4,6,0,5
-GestionLocation,controlleur,VoitureController,47,65,3,5,21,21,4,8,1,7
+GestionLocation,controlleur,VoitureController,42,70,3,5,20,22,3,9,0,8
 GestionLocation,entity,Voiture,0,226,0,0,0,72,0,31,0,31
 GestionLocation,ihm,Homeihm.new Runnable() {...},9,0,0,0,3,0,2,0,2,0
 GestionLocation,ihm,Homeihm.new ActionListener() {...},11,0,0,0,3,0,2,0,2,0
