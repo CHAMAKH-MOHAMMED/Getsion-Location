@@ -76,7 +76,7 @@ class VoitureControllerTest {
      @Test
     @Order(6)
     void rechercherParMarqueOuModeleTest() {
-          List<Voiture> voitures =controller.rechercherParMarqueOuModele("Chevrolet");
+          List<Voiture> voitures =controller.rechercherParMarqueOuModele("Renault");
          assertNotNull(voitures);
 
     }
@@ -84,7 +84,7 @@ class VoitureControllerTest {
      @Test
     @Order(7)
     void rechercherParImmatriculationTest() {
-          List<Voiture> voitures =controller.rechercherParImmatriculation("ABC123");
+          List<Voiture> voitures =controller.rechercherParImmatriculation("VWX012");
          assertNotNull(voitures);
 
     }

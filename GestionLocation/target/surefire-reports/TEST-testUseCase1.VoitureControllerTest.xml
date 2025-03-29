@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="testUseCase1.VoitureControllerTest" time="0.423" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="testUseCase1.VoitureControllerTest" time="0.301" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="MA"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\MohammedCHamakh\AppData\Local\Temp\surefire11551313436019144054\surefirebooter-20250329212819358_3.jar C:\Users\MohammedCHamakh\AppData\Local\Temp\surefire11551313436019144054 2025-03-29T21-28-19_094-jvmRun1 surefire-20250329212819358_1tmp surefire_0-20250329212819358_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\MohammedCHamakh\AppData\Local\Temp\surefire16517753999488418957\surefirebooter-20250329213350152_3.jar C:\Users\MohammedCHamakh\AppData\Local\Temp\surefire16517753999488418957 2025-03-29T21-33-49_931-jvmRun1 surefire-20250329213350152_1tmp surefire_0-20250329213350152_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\MohammedCHamakh\Documents\MiniProjet\GestionLocation\target\test-classes;C:\Users\MohammedCHamakh\Documents\MiniProjet\GestionLocation\target\classes;C:\Users\MohammedCHamakh\.m2\repository\com\mysql\mysql-connector-j\8.4.0\mysql-connector-j-8.4.0.jar;C:\Users\MohammedCHamakh\.m2\repository\com\google\protobuf\protobuf-java\3.25.1\protobuf-java-3.25.1.jar;C:\Users\MohammedCHamakh\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\MohammedCHamakh\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\MohammedCHamakh\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\MohammedCHamakh\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\MohammedCHamakh\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\MohammedCHamakh\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\MohammedCHamakh\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\MohammedCHamakh\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\MohammedCHamakh\AppData\Local\Temp\surefire11551313436019144054\surefirebooter-20250329212819358_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\MohammedCHamakh\AppData\Local\Temp\surefire16517753999488418957\surefirebooter-20250329213350152_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23.0.2+7-58"/>
@@ -59,7 +59,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testAjouterVoiture" classname="testUseCase1.VoitureControllerTest" time="0.246">
+  <testcase name="testAjouterVoiture" classname="testUseCase1.VoitureControllerTest" time="0.144">
     <system-err><![CDATA[java.lang.instrument.IllegalClassFormatException: Error while instrumenting java/sql/ParameterMetaData with JaCoCo 0.8.10.202304240956/8ea9668.
 	at org.jacoco.agent.rt.internal_4a7f17c.CoverageTransformer.transform(CoverageTransformer.java:94)
 	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:242)
@@ -167,10 +167,10 @@ Caused by: java.lang.IllegalArgumentException: Unsupported class file major vers
 	... 91 more
 ]]></system-err>
   </testcase>
-  <testcase name="testModifierVoiture" classname="testUseCase1.VoitureControllerTest" time="0.044"/>
-  <testcase name="testRechercherVoiture" classname="testUseCase1.VoitureControllerTest" time="0.019"/>
-  <testcase name="testListerVoitures" classname="testUseCase1.VoitureControllerTest" time="0.014"/>
-  <testcase name="testSupprimerVoiture" classname="testUseCase1.VoitureControllerTest" time="0.038">
+  <testcase name="testModifierVoiture" classname="testUseCase1.VoitureControllerTest" time="0.012"/>
+  <testcase name="testRechercherVoiture" classname="testUseCase1.VoitureControllerTest" time="0.013"/>
+  <testcase name="testListerVoitures" classname="testUseCase1.VoitureControllerTest" time="0.022"/>
+  <testcase name="testSupprimerVoiture" classname="testUseCase1.VoitureControllerTest" time="0.033">
     <system-err><![CDATA[java.sql.SQLException: No cars found
 	at controlleur.VoitureController.rechercherVoiture(VoitureController.java:131)
 	at testUseCase1.VoitureControllerTest.testSupprimerVoiture(VoitureControllerTest.java:73)
@@ -245,6 +245,6 @@ Caused by: java.lang.IllegalArgumentException: Unsupported class file major vers
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></system-err>
   </testcase>
-  <testcase name="rechercherParMarqueOuModeleTest" classname="testUseCase1.VoitureControllerTest" time="0.024"/>
-  <testcase name="rechercherParImmatriculationTest" classname="testUseCase1.VoitureControllerTest" time="0.012"/>
+  <testcase name="rechercherParMarqueOuModeleTest" classname="testUseCase1.VoitureControllerTest" time="0.036"/>
+  <testcase name="rechercherParImmatriculationTest" classname="testUseCase1.VoitureControllerTest" time="0.013"/>
 </testsuite>
