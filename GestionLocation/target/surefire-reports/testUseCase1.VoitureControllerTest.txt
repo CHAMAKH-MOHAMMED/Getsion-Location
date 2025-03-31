@@ -1,4 +1,93 @@
 -------------------------------------------------------------------------------
 Test set: testUseCase1.VoitureControllerTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.301 s -- in testUseCase1.VoitureControllerTest
+Tests run: 7, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 0.463 s <<< FAILURE! -- in testUseCase1.VoitureControllerTest
+testUseCase1.VoitureControllerTest.testAjouterVoiture -- Time elapsed: 0.021 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: L'ajout de la voiture a échoué ==> expected: not equal but was: <-1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotEquals.failEqual(AssertNotEquals.java:277)
+	at org.junit.jupiter.api.AssertNotEquals.assertNotEquals(AssertNotEquals.java:94)
+	at org.junit.jupiter.api.Assertions.assertNotEquals(Assertions.java:2023)
+	at testUseCase1.VoitureControllerTest.testAjouterVoiture(VoitureControllerTest.java:39)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+testUseCase1.VoitureControllerTest.testModifierVoiture -- Time elapsed: 0.105 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+La modification a échoué ==> expected: <success> but was: <error: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at testUseCase1.VoitureControllerTest.testModifierVoiture(VoitureControllerTest.java:47)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+testUseCase1.VoitureControllerTest.testRechercherVoiture -- Time elapsed: 0.021 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Voiture non trouvée ==> expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:312)
+	at testUseCase1.VoitureControllerTest.testRechercherVoiture(VoitureControllerTest.java:54)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+testUseCase1.VoitureControllerTest.testListerVoitures -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: La liste de voitures est null ==> expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:312)
+	at testUseCase1.VoitureControllerTest.testListerVoitures(VoitureControllerTest.java:63)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+testUseCase1.VoitureControllerTest.testSupprimerVoiture -- Time elapsed: 0 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Suppression de la voiture échouée ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at testUseCase1.VoitureControllerTest.testSupprimerVoiture(VoitureControllerTest.java:71)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+testUseCase1.VoitureControllerTest.rechercherParMarqueOuModeleTest -- Time elapsed: 0.154 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:30)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:304)
+	at testUseCase1.VoitureControllerTest.rechercherParMarqueOuModeleTest(VoitureControllerTest.java:80)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
+testUseCase1.VoitureControllerTest.rechercherParImmatriculationTest -- Time elapsed: 0.016 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:30)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:304)
+	at testUseCase1.VoitureControllerTest.rechercherParImmatriculationTest(VoitureControllerTest.java:88)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+

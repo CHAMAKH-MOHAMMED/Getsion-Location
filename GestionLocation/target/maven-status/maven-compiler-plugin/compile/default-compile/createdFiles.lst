@@ -5,6 +5,7 @@ ihm\GestionVoitureIHM$1.class
 entity\Voiture.class
 ihm\Homeihm$2.class
 ihm\Homeihm.class
+ihm\GestionContrat.class
 ihm\GestionVoitureIHM$5.class
 ihm\GestionVoitureIHM$4.class
 ihm\Homeihm$1.class
@@ -15,3 +16,4 @@ dao\Database.class
 dao\DatabaseTest.class
 ihm\GestionVoitureIHM$7.class
 ihm\GestionVoitureIHM.class
+ihm\GestionContrat$1.class

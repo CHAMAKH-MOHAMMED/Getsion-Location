@@ -16,14 +16,14 @@ class VoitureControllerTest {
     @BeforeAll
     static void setUp() {
         controller = new VoitureController();
-        voitureTest = new Voiture(); // Correction : Initialisation correcte
+        voitureTest = new Voiture(); 
 
-        voitureTest.setImmatriculation("123ABC"); // Ajout de l'immatriculation
+        voitureTest.setImmatriculation("123ABC"); // Ajout les champs
         voitureTest.setAnnee("2020");
         voitureTest.setMarque("Toyota");
         voitureTest.setModele("Corolla");
-        voitureTest.setKilometrage("25000"); // Correction : Utilisation d'un int
-        voitureTest.setPrix("23000"); // Correction : Utilisation d'un int
+        voitureTest.setKilometrage("25000"); 
+        voitureTest.setPrix("23000"); 
         voitureTest.setCouleur("Rouge");
         voitureTest.setTypeCarburant("Essence");
         voitureTest.setNombrePortes("4");
