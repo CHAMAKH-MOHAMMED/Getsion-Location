@@ -66,7 +66,6 @@
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="cmdContrat" max="32767" attributes="0"/>
                               <Component id="cmdVoitures" pref="331" max="32767" attributes="0"/>
-                              <Component id="cmdClients" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="75" max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="743" max="-2" attributes="0"/>
@@ -83,11 +82,9 @@
                   <Component id="jLabel2" min="-2" pref="92" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="196" max="-2" attributes="0"/>
-                          <Component id="cmdClients" min="-2" pref="59" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                           <Component id="cmdVoitures" min="-2" pref="59" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                           <Component id="cmdContrat" min="-2" pref="59" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -131,6 +128,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Gestion des Contrat"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdContratActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -150,20 +150,6 @@
               <Image iconType="2" name="C:\Users\MohammedCHamakh\Documents\MiniProjet\iconHome.jpg"/>
             </Property>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="cmdClients">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="e7" green="9d" id="Button.default.borderColor" palette="3" red="4e" type="palette"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Gestion des Clients"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmdClientsActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

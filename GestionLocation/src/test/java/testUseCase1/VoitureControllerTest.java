@@ -1,6 +1,6 @@
 package testUseCase1;
 
-import controlleur.VoitureController;
+import controler.VoitureController;
 import entity.Voiture;
 import org.junit.jupiter.api.*;
 

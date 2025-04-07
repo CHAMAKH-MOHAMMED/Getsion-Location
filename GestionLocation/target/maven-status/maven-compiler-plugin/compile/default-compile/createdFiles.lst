@@ -1,7 +1,7 @@
-controlleur\VoitureController.class
 ihm\GestionVoitureIHM$2.class
 ihm\Homeihm$3.class
 ihm\GestionVoitureIHM$1.class
+ihm\GestionContrat$2.class
 entity\Voiture.class
 ihm\Homeihm$2.class
 ihm\Homeihm.class
@@ -13,6 +13,7 @@ dao\VoitureDAO.class
 ihm\GestionVoitureIHM$3.class
 ihm\GestionVoitureIHM$6.class
 dao\Database.class
+controler\VoitureController.class
 dao\DatabaseTest.class
 ihm\GestionVoitureIHM$7.class
 ihm\GestionVoitureIHM.class

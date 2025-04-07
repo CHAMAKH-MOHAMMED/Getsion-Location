@@ -4,7 +4,7 @@
  */
 package ihm;
 
-import controlleur.VoitureController;
+import controler.VoitureController;
 import entity.Voiture;
 import java.util.List;
 import javax.swing.JOptionPane;

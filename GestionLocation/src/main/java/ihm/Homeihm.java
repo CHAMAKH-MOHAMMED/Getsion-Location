@@ -31,7 +31,6 @@ public class Homeihm extends javax.swing.JFrame {
         cmdContrat = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        cmdClients = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +52,11 @@ public class Homeihm extends javax.swing.JFrame {
         cmdContrat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cmdContrat.setForeground(new java.awt.Color(255, 255, 255));
         cmdContrat.setText("Gestion des Contrat");
+        cmdContrat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdContratActionPerformed(evt);
+            }
+        });
 
         jLabel2.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Blue"));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
@@ -60,15 +64,6 @@ public class Homeihm extends javax.swing.JFrame {
         jLabel2.setText("Gestion de Location");
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\MohammedCHamakh\\Documents\\MiniProjet\\iconHome.jpg")); // NOI18N
-
-        cmdClients.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.default.borderColor"));
-        cmdClients.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cmdClients.setText("Gestion des Clients");
-        cmdClients.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdClientsActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,8 +78,7 @@ public class Homeihm extends javax.swing.JFrame {
                         .addGap(80, 80, 80)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(cmdContrat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmdVoitures, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                            .addComponent(cmdClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cmdVoitures, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)))
@@ -96,11 +90,9 @@ public class Homeihm extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(196, 196, 196)
-                        .addComponent(cmdClients, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(110, 110, 110)
                         .addComponent(cmdVoitures, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(129, 129, 129)
                         .addComponent(cmdContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -133,8 +125,10 @@ public class Homeihm extends javax.swing.JFrame {
            
     }//GEN-LAST:event_cmdVoituresActionPerformed
 
-    private void cmdClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdClientsActionPerformed
-    }//GEN-LAST:event_cmdClientsActionPerformed
+    private void cmdContratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdContratActionPerformed
+          new GestionContrat().setVisible(true);
+            this.dispose(); 
+    }//GEN-LAST:event_cmdContratActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,7 +166,6 @@ public class Homeihm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cmdClients;
     private javax.swing.JButton cmdContrat;
     private javax.swing.JButton cmdVoitures;
     private javax.swing.JLabel jLabel1;
