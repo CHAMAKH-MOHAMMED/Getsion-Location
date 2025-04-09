@@ -36,16 +36,7 @@ public class ContratDAO {
         }
     }
 
-    // Mettre à jour seulement l'état du contrat par son numéro
-    public boolean update(String nContrat) throws SQLException {
-        String sql = "UPDATE Contrat SET EtatOcation = ? WHERE NContrat = ?";
-        try (PreparedStatement stmt = bd.getConnection().prepareStatement(sql)) {
-            stmt.setString(1, "Terminée");
-            stmt.setString(2, nContrat);
-
-            return stmt.executeUpdate() > 0;
-        }
-    }
+  
 
     // Mettre à jour tout le contrat à partir de l’objet Contrat (avec matricule voiture)
     public boolean update(Contrat c) throws SQLException {
@@ -123,37 +114,13 @@ public class ContratDAO {
                         voiture
                 );
                 contrats.add(contrat);
-                System.out.println(contrat);
+               
             }
         }
         return contrats;
     }
 
-    // Récupérer un contrat par ID
-    public Contrat getOne(int id) throws SQLException {
-        String sql = "SELECT * FROM Contrat WHERE ID = ?";
-        try (PreparedStatement stmt = bd.getConnection().prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return new Contrat(
-                        rs.getInt("ID"),
-                        rs.getString("NomC"),
-                        rs.getString("PrenomC"),
-                        rs.getString("Cin"),
-                        rs.getString("NContrat"),
-                        rs.getString("EtatOcation"),
-                        rs.getString("LicenceConduit"),
-                        rs.getDate("DateDebut"),
-                        rs.getDate("DateFin"),
-                        rs.getString("Prix"),
-                        vDAO.getOne(rs.getInt("VoitureID"))
-                );
-            }
-        }
-        return null;
-    }
+    
 
     public List<Contrat> searchContrats(String searchTerm) throws SQLException {
         List<Contrat> contrats = new ArrayList<>();
@@ -213,18 +180,6 @@ public class ContratDAO {
         return contrats;
     }
 
-    // Obtenir l'ID d'une voiture via son immatriculation
-    private int getVoitureIdByImmatriculation(String immatriculation) throws SQLException {
-        String sql = "SELECT ID FROM Voiture WHERE Immatriculation = ?";
-        int i = -1;
-        try (PreparedStatement stmt = bd.getConnection().prepareStatement(sql)) {
-            stmt.setString(1, immatriculation);
-            ResultSet rst = stmt.executeQuery();
-            if (rst.next()) {
-                i = rst.getInt("ID");
-            }
-        }
-        return i;
-    }
+    
 
 }
