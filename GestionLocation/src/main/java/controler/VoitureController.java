@@ -73,6 +73,20 @@ public class VoitureController {
      * @throws SQLException Si une erreur se produit lors de la récupération des
      * voitures
      */
+    
+    
+             public List<Voiture> listerVoituresDisponible()   {
+        try {
+            List<Voiture> voitures = voitureDAO.getAllDisponible();  // Fetch all cars
+            if (voitures.isEmpty()) {
+                throw new SQLException("No cars found in the database.");  // If no cars found, throw an exception
+            }
+            return voitures;
+        } catch (SQLException e) {
+            e.printStackTrace(); // Replace with proper logging
+            return null;
+        }
+    }
     public List<Voiture> listerVoitures()   {
         try {
             List<Voiture> voitures = voitureDAO.getAll();  // Fetch all cars
@@ -109,6 +123,20 @@ public class VoitureController {
      * @return Une liste des voitures correspondantes
     
      */
+    
+             public List<Voiture> rechercherParMarqueOuModeleDisponible(String marqueOuModele) {
+        try {
+            List<Voiture> voitures = voitureDAO.getAllByMarqueOrModeleD(marqueOuModele);
+            if (voitures.isEmpty()) {
+                throw new SQLException("No cars found");
+            }
+            return voitures;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
     public List<Voiture> rechercherParMarqueOuModele(String marqueOuModele) {
         try {
             List<Voiture> voitures = voitureDAO.getAllByMarqueOrModele(marqueOuModele);
@@ -122,7 +150,15 @@ public class VoitureController {
         }
 
     }
-    
+    public boolean setEtatLocation(String immatriculation, String etat) {
+    try {
+        return voitureDAO.setEtatLocation(immatriculation, etat);
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
     public Voiture rechercherVoiture(String imat) {
         try {
            

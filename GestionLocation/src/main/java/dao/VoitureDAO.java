@@ -1,27 +1,26 @@
 package dao;
 
-
 import entity.Voiture;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VoitureDAO {
+
     private final Database database;
-    
+
     public VoitureDAO() {
         this.database = Database.getInstance();
     }
-    
+
     public int create(Voiture voiture) throws SQLException {
-        String query = "INSERT INTO Voiture (Marque, Modèle, Année, Immatriculation, " +
-                       "TypeCarburant, Kilométrage, Couleur, NombrePortes, " +
-                       "TypeTransmission, NuméroChâssis, Prix, Etat) " +
-                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
-        try (Connection connection = database.getConnection();
-             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            
+        String query = "INSERT INTO Voiture (Marque, Modèle, Année, Immatriculation, "
+                + "TypeCarburant, Kilométrage, Couleur, NombrePortes, "
+                + "TypeTransmission, NuméroChâssis, Prix, Etat) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
             ps.setString(1, voiture.getMarque());
             ps.setString(2, voiture.getModele());
             ps.setString(3, voiture.getAnnee());
@@ -34,7 +33,7 @@ public class VoitureDAO {
             ps.setString(10, voiture.getNumeroChâssis());
             ps.setString(11, voiture.getPrix());
             ps.setString(12, voiture.getEtat());
-            
+
             ps.executeUpdate();
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
@@ -46,17 +45,16 @@ public class VoitureDAO {
         }
         return -1;
     }
-    
+
     public int update(Voiture voiture) throws SQLException {
-        String query = "UPDATE Voiture SET Marque = ?, Modèle = ?, Année = ?, " +
-                       "Immatriculation = ?, TypeCarburant = ?, Kilométrage = ?, " +
-                       "Couleur = ?, NombrePortes = ?, TypeTransmission = ?, " +
-                       "NuméroChâssis = ?, Prix = ?, Etat = ? " +
-                       "WHERE Immatriculation = ?";
-        
-        try (Connection connection = database.getConnection();
-             PreparedStatement ps = connection.prepareStatement(query)) {
-            
+        String query = "UPDATE Voiture SET Marque = ?, Modèle = ?, Année = ?, "
+                + "Immatriculation = ?, TypeCarburant = ?, Kilométrage = ?, "
+                + "Couleur = ?, NombrePortes = ?, TypeTransmission = ?, "
+                + "NuméroChâssis = ?, Prix = ?, Etat = ? "
+                + "WHERE Immatriculation = ?";
+
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
+
             ps.setString(1, voiture.getMarque());
             ps.setString(2, voiture.getModele());
             ps.setString(3, voiture.getAnnee());
@@ -70,53 +68,57 @@ public class VoitureDAO {
             ps.setString(11, voiture.getPrix());
             ps.setString(12, voiture.getEtat());
             ps.setString(13, voiture.getImmatriculation());
-            
-           return  ps.executeUpdate();
+
+            return ps.executeUpdate();
         }
     }
-    
+
     public boolean delete(String mat) throws SQLException {
         String query = "DELETE FROM Voiture WHERE Immatriculation = ?";
-        
-        try (Connection connection = database.getConnection();
-             PreparedStatement ps = connection.prepareStatement(query)) {
-            
+
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
+
             ps.setString(1, mat);
             ps.executeUpdate();
             return true;
-        }catch(Exception ex){
-            ex.printStackTrace();
-            return false;
         }
     }
-    
-    public List<Voiture> getAll() throws SQLException {
+    public List<Voiture> getAllDisponible() throws SQLException {
         List<Voiture> voitures = new ArrayList<>();
-        String query = "SELECT * FROM Voiture";
-        
-        try (Connection connection = database.getConnection();
-             PreparedStatement ps = connection.prepareStatement(query);
-             ResultSet rs = ps.executeQuery()) {
-            
+        String query = "SELECT * FROM Voiture where etat='disponible'";
+
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+
             while (rs.next()) {
                 voitures.add(mapResultSetToVoiture(rs));
             }
         }
         return voitures;
     }
-    
-    
-    
-    public List<Voiture> getAllByMarqueOrModele(String marqueOuModele) throws SQLException {
-        List<Voiture> voitures = new ArrayList<>();
-        String query = "SELECT * FROM Voiture WHERE Marque LIKE ? OR Modèle LIKE ?";
         
-        try (Connection connection = database.getConnection();
-             PreparedStatement ps = connection.prepareStatement(query)) {
-            
+    public List<Voiture> getAll() throws SQLException {
+        List<Voiture> voitures = new ArrayList<>();
+        String query = "SELECT * FROM Voiture";
+
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                voitures.add(mapResultSetToVoiture(rs));
+            }
+        }
+        return voitures;
+    }
+
+        
+         public List<Voiture> getAllByMarqueOrModeleD(String marqueOuModele) throws SQLException {
+        List<Voiture> voitures = new ArrayList<>();
+        String query = "SELECT * FROM Voiture WHERE Marque LIKE ? OR Modèle LIKE ? AND etat like 'disponible'";
+
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
+
             ps.setString(1, "%" + marqueOuModele + "%");
             ps.setString(2, "%" + marqueOuModele + "%");
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     voitures.add(mapResultSetToVoiture(rs));
@@ -125,29 +127,62 @@ public class VoitureDAO {
         }
         return voitures;
     }
-     public Voiture getOne(String matr) throws SQLException {
-    Voiture voiture = null;
-    String query = "SELECT * FROM Voiture WHERE Immatriculation = ?"; // Correction: Suppression de `%`
+    public List<Voiture> getAllByMarqueOrModele(String marqueOuModele) throws SQLException {
+        List<Voiture> voitures = new ArrayList<>();
+        String query = "SELECT * FROM Voiture WHERE Marque LIKE ? OR Modèle LIKE ?";
 
-    try (Connection connection = database.getConnection();
-         PreparedStatement ps = connection.prepareStatement(query)) {
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
 
-        ps.setString(1, matr); // Suppression de "%" pour correspondance exacte
+            ps.setString(1, "%" + marqueOuModele + "%");
+            ps.setString(2, "%" + marqueOuModele + "%");
 
-        try (ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) { 
-                voiture = mapResultSetToVoiture(rs);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    voitures.add(mapResultSetToVoiture(rs));
+                }
             }
         }
+        return voitures;
     }
-    return voiture;
-}
+        
+    public Voiture getOne(String matr) throws SQLException {
+        Voiture voiture = null;
+        String query = "SELECT * FROM Voiture WHERE Immatriculation = ?";
 
-    
-    private Voiture mapResultSetToVoiture(ResultSet rs) throws SQLException {
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1, matr);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    voiture = mapResultSetToVoiture(rs);
+                }
+            }
+        }
+        return voiture;
+    }
+
+    public Voiture getOne(int id) throws SQLException {
+        Voiture voiture = null;
+        String query = "SELECT * FROM Voiture WHERE ID = ?";
+
+        try (Connection connection = database.getConnection(); PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setInt(1, id);
+
+            try (ResultSet rst = ps.executeQuery()) {
+                if (rst.next()) {
+                    voiture = mapResultSetToVoiture(rst);
+                }
+            }
+        }
+        return voiture;
+    }
+
+    public Voiture mapResultSetToVoiture(ResultSet rs) throws SQLException {
         Voiture voiture = new Voiture();
         voiture.setId(rs.getInt("ID"));
-       
+
         voiture.setMarque(rs.getString("Marque"));
         voiture.setModele(rs.getString("Modèle"));
         voiture.setAnnee(rs.getString("Année"));
@@ -162,4 +197,17 @@ public class VoitureDAO {
         voiture.setEtat(rs.getString("Etat"));
         return voiture;
     }
+    public boolean setEtatLocation(String immatriculation, String nouvelEtat) throws SQLException {
+    String sql = "UPDATE Voiture SET Etat = ? WHERE Immatriculation = ?";
+
+    try (Connection connection = database.getConnection();
+         PreparedStatement ps = connection.prepareStatement(sql)) {
+
+        ps.setString(1, nouvelEtat);
+        ps.setString(2, immatriculation);
+
+        return ps.executeUpdate() > 0;
+    }
+}
+
 }

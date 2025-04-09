@@ -192,4 +192,11 @@ public class Voiture {
             annee,};
     }
 
+    public Object[] toArrayContrat() {
+        return new Object[]{
+            marque,
+            modele, prix,
+            immatriculation,};
+    }
+
 }

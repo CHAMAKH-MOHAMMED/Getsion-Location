@@ -222,6 +222,11 @@ public class GestionVoitureIHM extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Rechercher");
 
+        txtRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRechercherActionPerformed(evt);
+            }
+        });
         txtRechercher.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRechercherKeyReleased(evt);
@@ -483,6 +488,7 @@ public class GestionVoitureIHM extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
         lister();
+        
 
 
     }//GEN-LAST:event_formWindowOpened
@@ -514,47 +520,17 @@ public class GestionVoitureIHM extends javax.swing.JFrame {
 // Rechercher la voiture dans la base de données ou la liste
         Voiture v = voitureControleur.rechercherVoiture(matr);
 
-        if (v != null) {
-            // Remplir les champs avec les données de la voiture
-            txtAnnes.setText(v.getAnnee());
-            txtMarque.setText(v.getMarque());
-            txtModel.setText(v.getModele());
-            txtChassis.setText(v.getNumeroChâssis());
-            txtKilometrage.setText(v.getKilometrage());
-            txtPrix.setText(v.getPrix());
-            txtMatricule.setText(v.getImmatriculation());
-
-            // Gestion de l'état (Disponible/Indisponible)
-            if ("Disponible".equals(v.getEtat())) {
-                optDisponible.setSelected(true);
-            } else {
-                optIndisponible.setSelected(true);
-            }
-
-            // Gestion du type de carburant
-            if ("Diesel".equals(v.getTypeCarburant())) {
-                optDiesel.setSelected(true);
-            } else if ("Essence".equals(v.getTypeCarburant())) {
-                optEssence.setSelected(true);
-            } else {
-                opthybride.setSelected(true); // Par défaut si ce n'est ni Diesel ni Essence
-            }
-
-            // Gestion du type de transmission
-            if ("Auto".equals(v.getTypeTransmission())) {
-                optAuto.setSelected(true);
-            } else {
-                optManuelle.setSelected(true);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Voiture non trouvée !");
-        }
-
+       afficherVoiturs(v);
 
     }//GEN-LAST:event_cmdDetailesActionPerformed
 
     private void cmdModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdModifierActionPerformed
-         Voiture v = new Voiture();
+         
+        
+        
+        Voiture v = new Voiture();
+         
+         
         v.setAnnee(txtAnnes.getText());
         v.setMarque(txtMarque.getText());
         v.setModele(txtModel.getText());
@@ -604,6 +580,10 @@ public class GestionVoitureIHM extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cmdModifierActionPerformed
 
+    private void txtRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRechercherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRechercherActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -614,7 +594,44 @@ public class GestionVoitureIHM extends javax.swing.JFrame {
             model.addRow(voiture.toArray());
         }
     }
+    public void afficherVoiturs( Voiture v){
+         if (v != null) {
+            // Remplir les champs avec les données de la voiture
+            txtAnnes.setText(v.getAnnee());
+            txtMarque.setText(v.getMarque());
+            txtModel.setText(v.getModele());
+            txtChassis.setText(v.getNumeroChâssis());
+            txtKilometrage.setText(v.getKilometrage());
+            txtPrix.setText(v.getPrix());
+            txtMatricule.setText(v.getImmatriculation());
 
+            // Gestion de l'état (Disponible/Indisponible)
+            if ("Disponible".equals(v.getEtat())) {
+                optDisponible.setSelected(true);
+            } else {
+                optIndisponible.setSelected(true);
+            }
+
+            // Gestion du type de carburant
+            if ("Diesel".equals(v.getTypeCarburant())) {
+                optDiesel.setSelected(true);
+            } else if ("Essence".equals(v.getTypeCarburant())) {
+                optEssence.setSelected(true);
+            } else {
+                opthybride.setSelected(true); // Par défaut si ce n'est ni Diesel ni Essence
+            }
+
+            // Gestion du type de transmission
+            if ("Auto".equals(v.getTypeTransmission())) {
+                optAuto.setSelected(true);
+            } else {
+                optManuelle.setSelected(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Voiture non trouvée !");
+        }
+
+    };
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
