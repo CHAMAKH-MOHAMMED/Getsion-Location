@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContratController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GestionLocation</a> &gt; <a href="index.source.html" class="el_package">controler</a> &gt; <span class="el_source">ContratController.java</span></div><h1>ContratController.java</h1><pre class="source lang-java linenums">package controler;
+
+import dao.ContratDAO;
+import entity.Contrat;
+import java.sql.SQLException;
+import java.util.List;
+
+public class ContratController {
+
+    private final ContratDAO contratDAO;
+
+<span class="fc" id="L12">    public ContratController() {</span>
+<span class="fc" id="L13">        this.contratDAO = new ContratDAO();</span>
+<span class="fc" id="L14">    }</span>
+
+    // Créer un contrat
+    public boolean createContrat(Contrat contrat) {
+        try {
+<span class="fc bfc" id="L19" title="All 2 branches covered.">            if (contrat == null) {</span>
+<span class="fc" id="L20">                throw new IllegalArgumentException(&quot;Le contrat ne peut pas être null.&quot;);</span>
+            }
+<span class="fc" id="L22">            return contratDAO.creat(contrat);</span>
+<span class="nc" id="L23">        } catch (SQLException e) {</span>
+<span class="nc" id="L24">            return false;</span>
+<span class="fc" id="L25">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L26">            return false;</span>
+        }
+    }
+
+    // Mettre à jour un contrat
+    public boolean updateContrat(Contrat contrat) {
+        try {
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            if (contrat == null ) {</span>
+<span class="fc" id="L34">                throw new IllegalArgumentException(&quot;Le contrat ou son ID est invalide.&quot;);</span>
+            }
+<span class="fc" id="L36">            return contratDAO.update(contrat);</span>
+<span class="nc" id="L37">        } catch (SQLException e) {</span>
+<span class="nc" id="L38">            return false;</span>
+<span class="fc" id="L39">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L40">            return false;</span>
+        }
+    }
+
+   
+    // Supprimer un contrat
+    public boolean deleteContrat(String nContrat) {
+        try {
+<span class="fc bfc" id="L48" title="All 4 branches covered.">            if (nContrat == null || nContrat.isEmpty()) {</span>
+<span class="fc" id="L49">                throw new IllegalArgumentException(&quot;Le numéro du contrat est invalide.&quot;);</span>
+            }
+<span class="fc" id="L51">            return contratDAO.del(nContrat);</span>
+<span class="nc" id="L52">        } catch (SQLException e) {</span>
+<span class="nc" id="L53">            return false;</span>
+<span class="fc" id="L54">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L55">            return false;</span>
+        }
+    }
+
+   
+
+    // Récupérer tous les contrats
+    public List&lt;Contrat&gt; getAllContrats() {
+        try {
+<span class="fc" id="L64">            return contratDAO.getAll();</span>
+<span class="nc" id="L65">        } catch (SQLException e) {</span>
+<span class="nc" id="L66">            return null;</span>
+        }
+    }
+
+    // Récupérer un contrat par le numéro de contrat
+    public Contrat getContratByNum(String nContrat) {
+        try {
+<span class="fc bfc" id="L73" title="All 4 branches covered.">            if (nContrat == null || nContrat.isEmpty()) {</span>
+<span class="fc" id="L74">                throw new IllegalArgumentException(&quot;Le numéro du contrat est invalide.&quot;);</span>
+            }
+<span class="fc" id="L76">            return contratDAO.getAll().stream()</span>
+<span class="fc" id="L77">                    .filter(contrat -&gt; contrat.getnContrat().equals(nContrat))</span>
+<span class="fc" id="L78">                    .findFirst()</span>
+<span class="fc" id="L79">                    .orElse(null);</span>
+<span class="nc" id="L80">        } catch (SQLException e) {</span>
+<span class="nc" id="L81">            return null;</span>
+<span class="fc" id="L82">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L83">            return null;</span>
+        }
+    }
+      
+       public List&lt;Contrat&gt; getContratSearch(String nContratOrNomOrPrenom) {
+    try {
+        
+        
+        // Recherche parmi les contrats en filtrant sur nContrat, NomC ou PrenomC
+        
+        
+<span class="fc" id="L94">      List&lt;Contrat&gt; l = contratDAO.searchContrats(nContratOrNomOrPrenom);</span>
+        
+<span class="fc" id="L96">      return l;</span>
+   
+<span class="nc" id="L98">    } catch (Exception e) {</span>
+<span class="nc" id="L99">        return null;</span>
+    }
+
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

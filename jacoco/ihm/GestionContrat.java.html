@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GestionContrat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GestionLocation</a> &gt; <a href="index.source.html" class="el_package">ihm</a> &gt; <span class="el_source">GestionContrat.java</span></div><h1>GestionContrat.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package ihm;
+
+// Ajoutez cette ligne en haut de GestionContrat.java
+import com.toedter.calendar.JDateChooser;
+import controler.ContratController;
+import controler.VoitureController;
+import entity.Contrat;
+import entity.Voiture;
+import java.awt.BorderLayout;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+public class GestionContrat extends javax.swing.JFrame {
+
+    private JDateChooser dateChooserDebut;
+    private JDateChooser dateChooserFin;
+<span class="nc" id="L24">    VoitureController voitureControleur = new VoitureController();</span>
+<span class="nc" id="L25">    ContratController contratControler = new ContratController();</span>
+
+    DefaultTableModel modelTv;
+    DefaultTableModel modelTc;
+
+<span class="nc" id="L30">    public GestionContrat() {</span>
+<span class="nc" id="L31">        initComponents();</span>
+
+        // Configuration pour DateDebut
+<span class="nc" id="L34">        dateChooserDebut = new JDateChooser();</span>
+<span class="nc" id="L35">        dateChooserDebut.setDateFormatString(&quot;dd/MM/yyyy&quot;); // Format de date</span>
+<span class="nc" id="L36">        PanelDateDebut.setLayout(new BorderLayout()); // Définir le layout</span>
+<span class="nc" id="L37">        PanelDateDebut.add(dateChooserDebut); // Ajouter au panel</span>
+
+        // Configuration pour DateFin
+<span class="nc" id="L40">        dateChooserFin = new JDateChooser();</span>
+<span class="nc" id="L41">        dateChooserFin.setDateFormatString(&quot;dd/MM/yyyy&quot;);</span>
+<span class="nc" id="L42">        PaneldateFin.setLayout(new BorderLayout()); // Nom correct du panel (attention aux majuscules)</span>
+<span class="nc" id="L43">        PaneldateFin.add(dateChooserFin); // Ajouter dateChooserFin, pas le panel</span>
+        //les table des contrat table voiture
+<span class="nc" id="L45">        modelTv = (DefaultTableModel) tableVoitures.getModel();</span>
+<span class="nc" id="L46">        modelTc = (DefaultTableModel) tableContrat.getModel();</span>
+<span class="nc" id="L47">    }</span>
+
+    public void listerV() {
+<span class="nc" id="L50">        List&lt;Voiture&gt; voitures = voitureControleur.listerVoituresDisponible();</span>
+<span class="nc" id="L51">        modelTv.setRowCount(0); // Vider la table avant de la remplir</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (Voiture voiture : voitures) {</span>
+<span class="nc" id="L53">            modelTv.addRow(voiture.toArrayContrat());</span>
+<span class="nc" id="L54">        }</span>
+<span class="nc" id="L55">    }</span>
+
+    public void listerC() {
+<span class="nc" id="L58">        List&lt;Contrat&gt; contraes = contratControler.getAllContrats();</span>
+<span class="nc" id="L59">        modelTc.setRowCount(0); // Vider la table avant de la remplir</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        for (Contrat c : contraes) {</span>
+<span class="nc" id="L61">            modelTc.addRow(c.toArray());</span>
+<span class="nc" id="L62">        }</span>
+<span class="nc" id="L63">    }</span>
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="nc" id="L69">        GroupeEtat = new javax.swing.ButtonGroup();</span>
+<span class="nc" id="L70">        jPanel1 = new javax.swing.JPanel();</span>
+<span class="nc" id="L71">        jLabel1 = new javax.swing.JLabel();</span>
+<span class="nc" id="L72">        jButton1 = new javax.swing.JButton();</span>
+<span class="nc" id="L73">        jButton2 = new javax.swing.JButton();</span>
+<span class="nc" id="L74">        jPanel2 = new javax.swing.JPanel();</span>
+<span class="nc" id="L75">        jLabel2 = new javax.swing.JLabel();</span>
+<span class="nc" id="L76">        txtNomClient = new javax.swing.JTextField();</span>
+<span class="nc" id="L77">        jLabel3 = new javax.swing.JLabel();</span>
+<span class="nc" id="L78">        jLabel4 = new javax.swing.JLabel();</span>
+<span class="nc" id="L79">        jLabel5 = new javax.swing.JLabel();</span>
+<span class="nc" id="L80">        jLabel6 = new javax.swing.JLabel();</span>
+<span class="nc" id="L81">        txtCINClient = new javax.swing.JTextField();</span>
+<span class="nc" id="L82">        txtContratId = new javax.swing.JTextField();</span>
+<span class="nc" id="L83">        txtPrenomClient = new javax.swing.JTextField();</span>
+<span class="nc" id="L84">        jLabel7 = new javax.swing.JLabel();</span>
+<span class="nc" id="L85">        txtPrix = new javax.swing.JTextField();</span>
+<span class="nc" id="L86">        jLabel8 = new javax.swing.JLabel();</span>
+<span class="nc" id="L87">        jLabel9 = new javax.swing.JLabel();</span>
+<span class="nc" id="L88">        jLabel10 = new javax.swing.JLabel();</span>
+<span class="nc" id="L89">        licenceConduit = new javax.swing.JTextField();</span>
+<span class="nc" id="L90">        jLabel11 = new javax.swing.JLabel();</span>
+<span class="nc" id="L91">        optEnCours = new javax.swing.JRadioButton();</span>
+<span class="nc" id="L92">        optTerminer = new javax.swing.JRadioButton();</span>
+<span class="nc" id="L93">        PaneldateFin = new javax.swing.JPanel();</span>
+<span class="nc" id="L94">        PanelDateDebut = new javax.swing.JPanel();</span>
+<span class="nc" id="L95">        jPanel3 = new javax.swing.JPanel();</span>
+<span class="nc" id="L96">        jLabel12 = new javax.swing.JLabel();</span>
+<span class="nc" id="L97">        cmdDetails = new javax.swing.JButton();</span>
+<span class="nc" id="L98">        cmdSupprimer = new javax.swing.JButton();</span>
+<span class="nc" id="L99">        cmdAjouter = new javax.swing.JButton();</span>
+<span class="nc" id="L100">        cmdModifier = new javax.swing.JButton();</span>
+<span class="nc" id="L101">        txtSearchContrat = new javax.swing.JPanel();</span>
+<span class="nc" id="L102">        jScrollPane1 = new javax.swing.JScrollPane();</span>
+<span class="nc" id="L103">        tableVoitures = new javax.swing.JTable();</span>
+<span class="nc" id="L104">        jScrollPane2 = new javax.swing.JScrollPane();</span>
+<span class="nc" id="L105">        tableContrat = new javax.swing.JTable();</span>
+<span class="nc" id="L106">        jLabel13 = new javax.swing.JLabel();</span>
+<span class="nc" id="L107">        txtSearchVoitures = new javax.swing.JTextField();</span>
+<span class="nc" id="L108">        jLabel14 = new javax.swing.JLabel();</span>
+<span class="nc" id="L109">        txtContrat = new javax.swing.JTextField();</span>
+
+<span class="nc" id="L111">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L112">        addWindowListener(new java.awt.event.WindowAdapter() {</span>
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+<span class="nc" id="L114">                formWindowOpened(evt);</span>
+<span class="nc" id="L115">            }</span>
+        });
+
+<span class="nc" id="L118">        jPanel1.setBackground(new java.awt.Color(204, 204, 204));</span>
+
+<span class="nc" id="L120">        jLabel1.setBackground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L121">        jLabel1.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 24)); // NOI18N</span>
+<span class="nc" id="L122">        jLabel1.setForeground(new java.awt.Color(0, 255, 204));</span>
+<span class="nc" id="L123">        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);</span>
+<span class="nc" id="L124">        jLabel1.setText(&quot;Gestion des Contrat&quot;);</span>
+
+<span class="nc" id="L126">        jButton1.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 14)); // NOI18N</span>
+<span class="nc" id="L127">        jButton1.setText(&quot;Home&quot;);</span>
+<span class="nc" id="L128">        jButton1.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L130">                jButton1ActionPerformed(evt);</span>
+<span class="nc" id="L131">            }</span>
+        });
+
+<span class="nc" id="L134">        jButton2.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L135">        jButton2.setText(&quot;Gestion Voitures&quot;);</span>
+<span class="nc" id="L136">        jButton2.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L138">                jButton2ActionPerformed(evt);</span>
+<span class="nc" id="L139">            }</span>
+        });
+
+<span class="nc" id="L142">        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);</span>
+<span class="nc" id="L143">        jPanel1.setLayout(jPanel1Layout);</span>
+<span class="nc" id="L144">        jPanel1Layout.setHorizontalGroup(</span>
+<span class="nc" id="L145">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L146">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L147">                .addGap(16, 16, 16)</span>
+<span class="nc" id="L148">                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L149">                .addGap(50, 50, 50)</span>
+<span class="nc" id="L150">                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L151">                .addGap(159, 159, 159)</span>
+<span class="nc" id="L152">                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L153">                .addGap(121, 121, 121))</span>
+        );
+<span class="nc" id="L155">        jPanel1Layout.setVerticalGroup(</span>
+<span class="nc" id="L156">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L157">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L158">                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L159">                .addGap(22, 22, 22))</span>
+<span class="nc" id="L160">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="nc" id="L161">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L162">                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L163">                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L164">                .addGap(19, 19, 19))</span>
+        );
+
+<span class="nc" id="L167">        jPanel2.setBackground(new java.awt.Color(255, 255, 255));</span>
+<span class="nc" id="L168">        jPanel2.setBorder(new javax.swing.border.MatteBorder(null));</span>
+
+<span class="nc" id="L170">        jLabel2.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 24)); // NOI18N</span>
+<span class="nc" id="L171">        jLabel2.setForeground(new java.awt.Color(0, 204, 153));</span>
+<span class="nc" id="L172">        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);</span>
+<span class="nc" id="L173">        jLabel2.setText(&quot;Adminstration des Contrat&quot;);</span>
+
+<span class="nc" id="L175">        jLabel3.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L176">        jLabel3.setText(&quot;Nom&quot;);</span>
+
+<span class="nc" id="L178">        jLabel4.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L179">        jLabel4.setText(&quot;Contrat &quot;);</span>
+
+<span class="nc" id="L181">        jLabel5.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L182">        jLabel5.setText(&quot;Prenom&quot;);</span>
+
+<span class="nc" id="L184">        jLabel6.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L185">        jLabel6.setText(&quot;CIN&quot;);</span>
+
+<span class="nc" id="L187">        txtContratId.setEnabled(false);</span>
+
+<span class="nc" id="L189">        jLabel7.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L190">        jLabel7.setText(&quot;Date Fin&quot;);</span>
+
+<span class="nc" id="L192">        txtPrix.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));</span>
+<span class="nc" id="L193">        txtPrix.setEnabled(false);</span>
+<span class="nc" id="L194">        txtPrix.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L196">                txtPrixActionPerformed(evt);</span>
+<span class="nc" id="L197">            }</span>
+        });
+
+<span class="nc" id="L200">        jLabel8.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L201">        jLabel8.setText(&quot;Date Debut&quot;);</span>
+
+<span class="nc" id="L203">        jLabel9.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L204">        jLabel9.setText(&quot;Prix&quot;);</span>
+
+<span class="nc" id="L206">        jLabel10.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L207">        jLabel10.setText(&quot;Licence Conduit&quot;);</span>
+
+<span class="nc" id="L209">        jLabel11.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 0, 18)); // NOI18N</span>
+<span class="nc" id="L210">        jLabel11.setText(&quot;Etat de L'ocations &quot;);</span>
+
+<span class="nc" id="L212">        GroupeEtat.add(optEnCours);</span>
+<span class="nc" id="L213">        optEnCours.setSelected(true);</span>
+<span class="nc" id="L214">        optEnCours.setText(&quot;Au Cours&quot;);</span>
+
+<span class="nc" id="L216">        GroupeEtat.add(optTerminer);</span>
+<span class="nc" id="L217">        optTerminer.setText(&quot;Terminer&quot;);</span>
+
+<span class="nc" id="L219">        PaneldateFin.setBackground(new java.awt.Color(255, 255, 255));</span>
+
+<span class="nc" id="L221">        javax.swing.GroupLayout PaneldateFinLayout = new javax.swing.GroupLayout(PaneldateFin);</span>
+<span class="nc" id="L222">        PaneldateFin.setLayout(PaneldateFinLayout);</span>
+<span class="nc" id="L223">        PaneldateFinLayout.setHorizontalGroup(</span>
+<span class="nc" id="L224">            PaneldateFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L225">            .addGap(0, 181, Short.MAX_VALUE)</span>
+        );
+<span class="nc" id="L227">        PaneldateFinLayout.setVerticalGroup(</span>
+<span class="nc" id="L228">            PaneldateFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L229">            .addGap(0, 33, Short.MAX_VALUE)</span>
+        );
+
+<span class="nc" id="L232">        PanelDateDebut.setBackground(new java.awt.Color(255, 255, 255));</span>
+
+<span class="nc" id="L234">        javax.swing.GroupLayout PanelDateDebutLayout = new javax.swing.GroupLayout(PanelDateDebut);</span>
+<span class="nc" id="L235">        PanelDateDebut.setLayout(PanelDateDebutLayout);</span>
+<span class="nc" id="L236">        PanelDateDebutLayout.setHorizontalGroup(</span>
+<span class="nc" id="L237">            PanelDateDebutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L238">            .addGap(0, 175, Short.MAX_VALUE)</span>
+        );
+<span class="nc" id="L240">        PanelDateDebutLayout.setVerticalGroup(</span>
+<span class="nc" id="L241">            PanelDateDebutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L242">            .addGap(0, 33, Short.MAX_VALUE)</span>
+        );
+
+<span class="nc" id="L245">        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);</span>
+<span class="nc" id="L246">        jPanel2.setLayout(jPanel2Layout);</span>
+<span class="nc" id="L247">        jPanel2Layout.setHorizontalGroup(</span>
+<span class="nc" id="L248">            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L249">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L250">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L251">                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L252">                        .addContainerGap()</span>
+<span class="nc" id="L253">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L254">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L255">                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L256">                                .addGap(0, 0, Short.MAX_VALUE))</span>
+<span class="nc" id="L257">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L258">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L259">                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L260">                                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L261">                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L262">                                        .addGap(45, 45, 45)</span>
+<span class="nc" id="L263">                                        .addComponent(PanelDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L264">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))</span>
+<span class="nc" id="L265">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L266">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L267">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L268">                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L269">                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L270">                                .addGap(18, 18, 18)</span>
+<span class="nc" id="L271">                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L272">                                    .addComponent(txtContratId, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L273">                                    .addComponent(txtPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L274">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L275">                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L276">                                .addGap(46, 46, 46)</span>
+<span class="nc" id="L277">                                .addComponent(PaneldateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))</span>
+<span class="nc" id="L278">                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L279">                        .addGap(0, 0, Short.MAX_VALUE)</span>
+<span class="nc" id="L280">                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L281">                        .addGap(26, 26, 26)</span>
+<span class="nc" id="L282">                        .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L283">                        .addGap(241, 241, 241)))</span>
+<span class="nc" id="L284">                .addGap(46, 46, 46))</span>
+<span class="nc" id="L285">            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L286">                .addContainerGap()</span>
+<span class="nc" id="L287">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L288">                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L289">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L290">                            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L291">                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L292">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L293">                                .addComponent(licenceConduit, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L294">                            .addComponent(txtCINClient, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L295">                            .addComponent(txtNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L296">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L297">                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L298">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L299">                        .addComponent(optEnCours, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L300">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L301">                        .addComponent(optTerminer)</span>
+<span class="nc" id="L302">                        .addGap(53, 53, 53))</span>
+<span class="nc" id="L303">                    .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L304">                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L305">                        .addContainerGap())))</span>
+        );
+<span class="nc" id="L307">        jPanel2Layout.setVerticalGroup(</span>
+<span class="nc" id="L308">            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L309">            .addGroup(jPanel2Layout.createSequentialGroup()</span>
+<span class="nc" id="L310">                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L311">                .addGap(18, 18, 18)</span>
+<span class="nc" id="L312">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L313">                    .addComponent(txtNomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L314">                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L315">                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L316">                    .addComponent(txtPrenomClient, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L317">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L318">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L319">                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L320">                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L321">                    .addComponent(txtContratId, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L322">                    .addComponent(txtCINClient, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L323">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L324">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L325">                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L326">                    .addComponent(licenceConduit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L327">                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L328">                    .addComponent(optEnCours)</span>
+<span class="nc" id="L329">                    .addComponent(optTerminer))</span>
+<span class="nc" id="L330">                .addGap(18, 18, 18)</span>
+<span class="nc" id="L331">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L332">                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L333">                        .addComponent(PaneldateFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L334">                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L335">                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L336">                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L337">                    .addComponent(PanelDateDebut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L338">                .addGap(18, 18, 18)</span>
+<span class="nc" id="L339">                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L340">                    .addComponent(txtPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L341">                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L342">                .addGap(25, 25, 25))</span>
+        );
+
+<span class="nc" id="L345">        jPanel3.setBackground(new java.awt.Color(255, 255, 255));</span>
+
+<span class="nc" id="L347">        jLabel12.setFont(new java.awt.Font(&quot;Arial&quot;, 1, 24)); // NOI18N</span>
+<span class="nc" id="L348">        jLabel12.setForeground(new java.awt.Color(0, 255, 204));</span>
+<span class="nc" id="L349">        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);</span>
+<span class="nc" id="L350">        jLabel12.setText(&quot;Actions&quot;);</span>
+
+<span class="nc" id="L352">        cmdDetails.setBackground(new java.awt.Color(153, 153, 153));</span>
+<span class="nc" id="L353">        cmdDetails.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 18)); // NOI18N</span>
+<span class="nc" id="L354">        cmdDetails.setForeground(new java.awt.Color(0, 255, 204));</span>
+<span class="nc" id="L355">        cmdDetails.setText(&quot;Details&quot;);</span>
+<span class="nc" id="L356">        cmdDetails.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L358">                cmdDetailsActionPerformed(evt);</span>
+<span class="nc" id="L359">            }</span>
+        });
+
+<span class="nc" id="L362">        cmdSupprimer.setBackground(new java.awt.Color(153, 153, 153));</span>
+<span class="nc" id="L363">        cmdSupprimer.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 18)); // NOI18N</span>
+<span class="nc" id="L364">        cmdSupprimer.setForeground(new java.awt.Color(0, 255, 204));</span>
+<span class="nc" id="L365">        cmdSupprimer.setText(&quot;Supprimer&quot;);</span>
+<span class="nc" id="L366">        cmdSupprimer.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L368">                cmdSupprimerActionPerformed(evt);</span>
+<span class="nc" id="L369">            }</span>
+        });
+
+<span class="nc" id="L372">        cmdAjouter.setBackground(new java.awt.Color(153, 153, 153));</span>
+<span class="nc" id="L373">        cmdAjouter.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 18)); // NOI18N</span>
+<span class="nc" id="L374">        cmdAjouter.setForeground(new java.awt.Color(0, 255, 204));</span>
+<span class="nc" id="L375">        cmdAjouter.setText(&quot;Ajouter&quot;);</span>
+<span class="nc" id="L376">        cmdAjouter.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L378">                cmdAjouterActionPerformed(evt);</span>
+<span class="nc" id="L379">            }</span>
+        });
+
+<span class="nc" id="L382">        cmdModifier.setBackground(new java.awt.Color(153, 153, 153));</span>
+<span class="nc" id="L383">        cmdModifier.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 18)); // NOI18N</span>
+<span class="nc" id="L384">        cmdModifier.setForeground(new java.awt.Color(0, 255, 204));</span>
+<span class="nc" id="L385">        cmdModifier.setText(&quot;Modifier&quot;);</span>
+<span class="nc" id="L386">        cmdModifier.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L388">                cmdModifierActionPerformed(evt);</span>
+<span class="nc" id="L389">            }</span>
+        });
+
+<span class="nc" id="L392">        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);</span>
+<span class="nc" id="L393">        jPanel3.setLayout(jPanel3Layout);</span>
+<span class="nc" id="L394">        jPanel3Layout.setHorizontalGroup(</span>
+<span class="nc" id="L395">            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L396">            .addGroup(jPanel3Layout.createSequentialGroup()</span>
+<span class="nc" id="L397">                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L398">                    .addGroup(jPanel3Layout.createSequentialGroup()</span>
+<span class="nc" id="L399">                        .addGap(41, 41, 41)</span>
+<span class="nc" id="L400">                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L401">                            .addComponent(cmdDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L402">                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L403">                                .addComponent(cmdModifier, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)</span>
+<span class="nc" id="L404">                                .addComponent(cmdAjouter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+<span class="nc" id="L405">                            .addComponent(cmdSupprimer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L406">                    .addGroup(jPanel3Layout.createSequentialGroup()</span>
+<span class="nc" id="L407">                        .addGap(63, 63, 63)</span>
+<span class="nc" id="L408">                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L409">                .addContainerGap(30, Short.MAX_VALUE))</span>
+        );
+<span class="nc" id="L411">        jPanel3Layout.setVerticalGroup(</span>
+<span class="nc" id="L412">            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L413">            .addGroup(jPanel3Layout.createSequentialGroup()</span>
+<span class="nc" id="L414">                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L415">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L416">                .addComponent(cmdAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L417">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L418">                .addComponent(cmdModifier, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L419">                .addGap(18, 18, 18)</span>
+<span class="nc" id="L420">                .addComponent(cmdDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L421">                .addGap(18, 18, 18)</span>
+<span class="nc" id="L422">                .addComponent(cmdSupprimer, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L423">                .addContainerGap(93, Short.MAX_VALUE))</span>
+        );
+
+<span class="nc" id="L426">        txtSearchContrat.setBackground(new java.awt.Color(255, 255, 255));</span>
+
+<span class="nc" id="L428">        tableVoitures.setModel(new javax.swing.table.DefaultTableModel(</span>
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                &quot;Marque&quot;, &quot;module&quot;, &quot;prix/jaur&quot;, &quot;matricule&quot;
+            }
+<span class="nc" id="L438">        ) {</span>
+<span class="nc" id="L439">            boolean[] canEdit = new boolean [] {</span>
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc" id="L444">                return canEdit [columnIndex];</span>
+            }
+        });
+<span class="nc" id="L447">        jScrollPane1.setViewportView(tableVoitures);</span>
+
+<span class="nc" id="L449">        tableContrat.setModel(new javax.swing.table.DefaultTableModel(</span>
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                &quot;client&quot;, &quot;etat&quot;, &quot;prix&quot;, &quot;nContrat&quot;
+            }
+<span class="nc" id="L459">        ) {</span>
+<span class="nc" id="L460">            boolean[] canEdit = new boolean [] {</span>
+                true, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+<span class="nc" id="L465">                return canEdit [columnIndex];</span>
+            }
+        });
+<span class="nc" id="L468">        jScrollPane2.setViewportView(tableContrat);</span>
+
+<span class="nc" id="L470">        jLabel13.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 14)); // NOI18N</span>
+<span class="nc" id="L471">        jLabel13.setText(&quot;Rechercher Contrat&quot;);</span>
+
+<span class="nc" id="L473">        txtSearchVoitures.addKeyListener(new java.awt.event.KeyAdapter() {</span>
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+<span class="nc" id="L475">                txtSearchVoituresKeyReleased(evt);</span>
+<span class="nc" id="L476">            }</span>
+        });
+
+<span class="nc" id="L479">        jLabel14.setFont(new java.awt.Font(&quot;Segoe UI&quot;, 1, 14)); // NOI18N</span>
+<span class="nc" id="L480">        jLabel14.setText(&quot;Rechercher Voitures&quot;);</span>
+
+<span class="nc" id="L482">        txtContrat.addKeyListener(new java.awt.event.KeyAdapter() {</span>
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+<span class="nc" id="L484">                txtContratKeyReleased(evt);</span>
+<span class="nc" id="L485">            }</span>
+        });
+
+<span class="nc" id="L488">        javax.swing.GroupLayout txtSearchContratLayout = new javax.swing.GroupLayout(txtSearchContrat);</span>
+<span class="nc" id="L489">        txtSearchContrat.setLayout(txtSearchContratLayout);</span>
+<span class="nc" id="L490">        txtSearchContratLayout.setHorizontalGroup(</span>
+<span class="nc" id="L491">            txtSearchContratLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L492">            .addGroup(txtSearchContratLayout.createSequentialGroup()</span>
+<span class="nc" id="L493">                .addGroup(txtSearchContratLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L494">                    .addGroup(txtSearchContratLayout.createSequentialGroup()</span>
+<span class="nc" id="L495">                        .addContainerGap()</span>
+<span class="nc" id="L496">                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L497">                        .addGap(46, 46, 46)</span>
+<span class="nc" id="L498">                        .addComponent(txtContrat, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L499">                        .addGap(18, 18, 18)</span>
+<span class="nc" id="L500">                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L501">                        .addGap(12, 12, 12)</span>
+<span class="nc" id="L502">                        .addComponent(txtSearchVoitures, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L503">                    .addGroup(txtSearchContratLayout.createSequentialGroup()</span>
+<span class="nc" id="L504">                        .addGap(105, 105, 105)</span>
+<span class="nc" id="L505">                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L506">                        .addGap(97, 97, 97)</span>
+<span class="nc" id="L507">                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="nc" id="L508">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+        );
+<span class="nc" id="L510">        txtSearchContratLayout.setVerticalGroup(</span>
+<span class="nc" id="L511">            txtSearchContratLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L512">            .addGroup(txtSearchContratLayout.createSequentialGroup()</span>
+<span class="nc" id="L513">                .addGap(7, 7, 7)</span>
+<span class="nc" id="L514">                .addGroup(txtSearchContratLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="nc" id="L515">                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L516">                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="nc" id="L517">                    .addComponent(txtSearchVoitures, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)</span>
+<span class="nc" id="L518">                    .addComponent(txtContrat))</span>
+<span class="nc" id="L519">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="nc" id="L520">                .addGroup(txtSearchContratLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)</span>
+<span class="nc" id="L521">                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L522">                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L523">                .addGap(73, 73, 73))</span>
+        );
+
+<span class="nc" id="L526">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="nc" id="L527">        getContentPane().setLayout(layout);</span>
+<span class="nc" id="L528">        layout.setHorizontalGroup(</span>
+<span class="nc" id="L529">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L530">            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)</span>
+<span class="nc" id="L531">            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()</span>
+<span class="nc" id="L532">                .addContainerGap()</span>
+<span class="nc" id="L533">                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L534">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)</span>
+<span class="nc" id="L535">                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="nc" id="L536">            .addComponent(txtSearchContrat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)</span>
+        );
+<span class="nc" id="L538">        layout.setVerticalGroup(</span>
+<span class="nc" id="L539">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="nc" id="L540">            .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L541">                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L542">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L543">                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="nc" id="L544">                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L545">                    .addGroup(layout.createSequentialGroup()</span>
+<span class="nc" id="L546">                        .addGap(28, 28, 28)</span>
+<span class="nc" id="L547">                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))</span>
+<span class="nc" id="L548">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="nc" id="L549">                .addComponent(txtSearchContrat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="nc" id="L550">                .addContainerGap())</span>
+        );
+
+<span class="nc" id="L553">        pack();</span>
+<span class="nc" id="L554">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void txtPrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrixActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L558">    }//GEN-LAST:event_txtPrixActionPerformed</span>
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+<span class="nc" id="L562">        listerV();</span>
+
+<span class="nc" id="L564">        listerC();</span>
+<span class="nc" id="L565">    }//GEN-LAST:event_formWindowOpened</span>
+
+    private void cmdAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAjouterActionPerformed
+        // Récupération des valeurs depuis les champs
+<span class="nc" id="L569">        String nom = txtNomClient.getText().trim();</span>
+<span class="nc" id="L570">        String prenom = txtPrenomClient.getText().trim();</span>
+<span class="nc" id="L571">        String cin = txtCINClient.getText().trim();</span>
+<span class="nc" id="L572">        String licence = licenceConduit.getText().trim();</span>
+<span class="nc" id="L573">        Date dateDebut = dateChooserDebut.getDate();</span>
+<span class="nc" id="L574">        Date dateFin = dateChooserFin.getDate();</span>
+<span class="nc bnc" id="L575" title="All 2 branches missed.">        String etat = (optEnCours.isSelected()) ? &quot;Au Cours&quot; : &quot;Terminé&quot;;</span>
+
+// Vérification des champs obligatoires
+<span class="nc bnc" id="L578" title="All 12 branches missed.">        if (nom.isEmpty() || prenom.isEmpty() || cin.isEmpty() || licence.isEmpty()</span>
+<span class="nc bnc" id="L579" title="All 2 branches missed.">                || dateDebut == null || dateFin == null || tableVoitures.getSelectedRow() == -1) {</span>
+<span class="nc" id="L580">            JOptionPane.showMessageDialog(null, &quot;Veuillez remplir tous les champs obligatoires et sélectionner une voiture.&quot;);</span>
+<span class="nc" id="L581">            return;</span>
+        }
+
+// Vérification que la date de début est avant la date de fin
+<span class="nc bnc" id="L585" title="All 2 branches missed.">        if (!dateFin.after(dateDebut)) {</span>
+<span class="nc" id="L586">            JOptionPane.showMessageDialog(null, &quot;La date de fin doit être après la date de début.&quot;);</span>
+<span class="nc" id="L587">            return;</span>
+        }
+
+// Générer un numéro de contrat unique
+<span class="nc" id="L591">        String nContrat = &quot;C&quot; + System.currentTimeMillis();</span>
+        //  VERFIER CHOISER UNE DATE 
+<span class="nc" id="L593">        int selectedRow = tableVoitures.getSelectedRow();</span>
+<span class="nc bnc" id="L594" title="All 2 branches missed.">        if (selectedRow == -1) {</span>
+<span class="nc" id="L595">            JOptionPane.showMessageDialog(null, &quot;Veuillez sélectionner une voiture dans la liste.&quot;);</span>
+<span class="nc" id="L596">            return;</span>
+        }
+// Récupérer l'immatriculation sélectionnée dans le tableau
+<span class="nc" id="L599">        String immatriculation = modelTv.getValueAt(tableVoitures.getSelectedRow(), 3).toString();</span>
+
+// Rechercher la voiture par son immatriculation
+<span class="nc" id="L602">        Voiture voiture = voitureControleur.rechercherVoiture(immatriculation);</span>
+<span class="nc bnc" id="L603" title="All 2 branches missed.">        if (voiture == null) {</span>
+<span class="nc" id="L604">            JOptionPane.showMessageDialog(null, &quot;Voiture introuvable !&quot;);</span>
+<span class="nc" id="L605">            return;</span>
+        }
+
+// Récupérer le prix (supposé être une chaîne représentant un nombre) et convertir en double
+<span class="nc" id="L609">        double prixJour = 0;</span>
+        try {
+<span class="nc" id="L611">            prixJour = Double.parseDouble(voiture.getPrix());</span>
+<span class="nc" id="L612">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L613">            JOptionPane.showMessageDialog(null, &quot;Le prix de la voiture est invalide.&quot;);</span>
+<span class="nc" id="L614">            return;</span>
+<span class="nc" id="L615">        }</span>
+
+// Calcul du nombre de jours entre les deux dates
+<span class="nc" id="L618">        long diffMillis = dateFin.getTime() - dateDebut.getTime();</span>
+<span class="nc" id="L619">        long nbJours = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);</span>
+<span class="nc bnc" id="L620" title="All 2 branches missed.">        if (nbJours &lt;= 0) {</span>
+<span class="nc" id="L621">            nbJours = 1; // Minimum 1 jour</span>
+        }
+// Calcul du prix total
+<span class="nc" id="L624">        String prixTotal = String.valueOf(prixJour * nbJours);</span>
+
+// Création du contrat
+<span class="nc" id="L627">        Contrat contrat = new Contrat(</span>
+                nom,
+                prenom,
+                cin,
+                nContrat,
+                etat,
+                licence,
+                dateDebut,
+                dateFin,
+                prixTotal,
+                voiture
+        );
+
+// Création du contrat via le contrôleur
+<span class="nc" id="L641">        boolean isCreated = contratControler.createContrat(contrat);</span>
+
+<span class="nc bnc" id="L643" title="All 2 branches missed.">        if (isCreated) {</span>
+            // Mettre à jour l'état de la voiture
+<span class="nc" id="L645">            boolean isEtatUpdated = voitureControleur.setEtatLocation(immatriculation, &quot;Indisponible&quot;);</span>
+
+<span class="nc bnc" id="L647" title="All 2 branches missed.">            if (isEtatUpdated) {</span>
+<span class="nc" id="L648">                JOptionPane.showMessageDialog(null, &quot;Le contrat a été créé avec succès.\nLa voiture est maintenant marquée comme 'Indisponible'.&quot;);</span>
+            } else {
+<span class="nc" id="L650">                JOptionPane.showMessageDialog(null, &quot;Le contrat a été créé, mais l'état de la voiture n'a pas pu être mis à jour.&quot;);</span>
+            }
+<span class="nc" id="L652">        } else {</span>
+<span class="nc" id="L653">            JOptionPane.showMessageDialog(null, &quot;Erreur lors de la création du contrat.&quot;);</span>
+        }
+
+// Vider les champs du f après création
+<span class="nc" id="L657">        txtNomClient.setText(&quot;&quot;);</span>
+<span class="nc" id="L658">        txtPrenomClient.setText(&quot;&quot;);</span>
+<span class="nc" id="L659">        txtCINClient.setText(&quot;&quot;);</span>
+<span class="nc" id="L660">        licenceConduit.setText(&quot;&quot;);</span>
+<span class="nc" id="L661">        dateChooserDebut.setDate(null);</span>
+<span class="nc" id="L662">        dateChooserFin.setDate(null);</span>
+<span class="nc" id="L663">        GroupeEtat.clearSelection();</span>
+<span class="nc" id="L664">        tableVoitures.clearSelection();</span>
+<span class="nc" id="L665">        listerC();</span>
+<span class="nc" id="L666">        listerV();</span>
+
+<span class="nc" id="L668">    }//GEN-LAST:event_cmdAjouterActionPerformed</span>
+
+    private void txtSearchVoituresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchVoituresKeyReleased
+<span class="nc" id="L671">        List&lt;Voiture&gt; voitures = voitureControleur.rechercherParMarqueOuModeleDisponible(txtSearchVoitures.getText());</span>
+<span class="nc" id="L672">        modelTv.setRowCount(0);</span>
+<span class="nc bnc" id="L673" title="All 2 branches missed.">        for (Voiture voiture : voitures) {</span>
+<span class="nc" id="L674">            modelTv.addRow(voiture.toArray());</span>
+<span class="nc" id="L675">        }</span>
+<span class="nc" id="L676">    }//GEN-LAST:event_txtSearchVoituresKeyReleased</span>
+
+    private void txtContratKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContratKeyReleased
+<span class="nc" id="L679">        List&lt;Contrat&gt; contrates = contratControler.getContratSearch(txtContrat.getText());</span>
+<span class="nc" id="L680">        modelTc.setRowCount(0); // Vider la table avant de la remplir</span>
+<span class="nc bnc" id="L681" title="All 2 branches missed.">        for (Contrat c : contrates) {</span>
+<span class="nc" id="L682">            modelTc.addRow(c.toArray());</span>
+<span class="nc" id="L683">        }</span>
+
+<span class="nc" id="L685">    }//GEN-LAST:event_txtContratKeyReleased</span>
+
+    private void cmdModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdModifierActionPerformed
+
+        // Récupération des valeurs depuis les champs
+<span class="nc" id="L690">        String nom = txtNomClient.getText().trim();</span>
+<span class="nc" id="L691">        String prenom = txtPrenomClient.getText().trim();</span>
+<span class="nc" id="L692">        String cin = txtCINClient.getText().trim();</span>
+<span class="nc" id="L693">        String licence = licenceConduit.getText().trim();</span>
+<span class="nc" id="L694">        Date dateDebut = dateChooserDebut.getDate();</span>
+<span class="nc" id="L695">        Date dateFin = dateChooserFin.getDate();</span>
+<span class="nc bnc" id="L696" title="All 2 branches missed.">        String etat = (optEnCours.isSelected()) ? &quot;Au Cours&quot; : &quot;Terminé&quot;;</span>
+        
+
+// Vérification des champs obligatoires
+<span class="nc bnc" id="L700" title="All 12 branches missed.">        if (nom.isEmpty() || prenom.isEmpty() || cin.isEmpty() || licence.isEmpty()</span>
+<span class="nc bnc" id="L701" title="All 2 branches missed.">                || dateDebut == null || dateFin == null || tableVoitures.getSelectedRow() == -1) {</span>
+<span class="nc" id="L702">            JOptionPane.showMessageDialog(null, &quot;Veuillez remplir tous les champs obligatoires et sélectionner une voiture.&quot;);</span>
+<span class="nc" id="L703">            return;</span>
+        }
+
+// Vérification que la date de début est avant la date de fin
+<span class="nc bnc" id="L707" title="All 2 branches missed.">        if (!dateFin.after(dateDebut)) {</span>
+<span class="nc" id="L708">            JOptionPane.showMessageDialog(null, &quot;La date de fin doit être après la date de début.&quot;);</span>
+<span class="nc" id="L709">            return;</span>
+        }
+
+// Générer un numéro de contrat unique
+<span class="nc" id="L713">        String nContrat = txtContratId.getText().trim();</span>
+        //  VERFIER CHOISER UNE DATE 
+<span class="nc" id="L715">        int selectedRow = tableVoitures.getSelectedRow();</span>
+<span class="nc bnc" id="L716" title="All 2 branches missed.">        if (selectedRow == -1) {</span>
+<span class="nc" id="L717">            JOptionPane.showMessageDialog(null, &quot;Veuillez sélectionner une voiture dans la liste.&quot;);</span>
+<span class="nc" id="L718">            return;</span>
+        }
+// Récupérer l'immatriculation sélectionnée dans le tableau
+<span class="nc" id="L721">        String immatriculation = modelTv.getValueAt(tableVoitures.getSelectedRow(), 3).toString();</span>
+
+// Rechercher la voiture par son immatriculation
+<span class="nc" id="L724">        Voiture voiture = voitureControleur.rechercherVoiture(immatriculation);</span>
+<span class="nc bnc" id="L725" title="All 2 branches missed.">        if (voiture == null) {</span>
+<span class="nc" id="L726">            JOptionPane.showMessageDialog(null, &quot;Voiture introuvable !&quot;);</span>
+<span class="nc" id="L727">            return;</span>
+        }
+
+// Récupérer le prix (supposé être une chaîne représentant un nombre) et convertir en double
+<span class="nc" id="L731">        double prixJour = 0;</span>
+        try {
+<span class="nc" id="L733">            prixJour = Double.parseDouble(voiture.getPrix());</span>
+<span class="nc" id="L734">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L735">            JOptionPane.showMessageDialog(null, &quot;Le prix de la voiture est invalide.&quot;);</span>
+<span class="nc" id="L736">            return;</span>
+<span class="nc" id="L737">        }</span>
+
+// Calcul du nombre de jours entre les deux dates
+<span class="nc" id="L740">        long diffMillis = dateFin.getTime() - dateDebut.getTime();</span>
+<span class="nc" id="L741">        long nbJours = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);</span>
+<span class="nc bnc" id="L742" title="All 2 branches missed.">        if (nbJours &lt;= 0) {</span>
+<span class="nc" id="L743">            nbJours = 1; // Minimum 1 jour</span>
+        }
+// Calcul du prix total
+<span class="nc" id="L746">        String prixTotal = String.valueOf(prixJour * nbJours);</span>
+
+// Création du contrat
+<span class="nc" id="L749">        Contrat contrat = new Contrat(</span>
+                nom,
+                prenom,
+                cin,
+                nContrat,
+                etat,
+                licence,
+                dateDebut,
+                dateFin,
+                prixTotal,
+                voiture
+        );
+
+// Création du contrat via le contrôleur
+<span class="nc" id="L763">        boolean isModfier = contratControler.updateContrat(contrat);</span>
+
+<span class="nc bnc" id="L765" title="All 2 branches missed.">        if (isModfier) {</span>
+<span class="nc" id="L766">            JOptionPane.showMessageDialog(null, &quot;Le contrat a été modfier avec succès.\nLa voiture est maintenant marquée comme 'Indisponible'.&quot;);</span>
+
+        } else {
+<span class="nc" id="L769">            JOptionPane.showMessageDialog(null, &quot;Erreur lors de la modifications du contrat.&quot;);</span>
+        }
+
+// Vider les champs du f après création
+<span class="nc" id="L773">        txtNomClient.setText(&quot;&quot;);</span>
+<span class="nc" id="L774">        txtPrenomClient.setText(&quot;&quot;);</span>
+<span class="nc" id="L775">        txtCINClient.setText(&quot;&quot;);</span>
+<span class="nc" id="L776">        licenceConduit.setText(&quot;&quot;);</span>
+<span class="nc" id="L777">        dateChooserDebut.setDate(null);</span>
+<span class="nc" id="L778">        dateChooserFin.setDate(null);</span>
+<span class="nc" id="L779">        GroupeEtat.clearSelection();</span>
+<span class="nc" id="L780">        tableVoitures.clearSelection();</span>
+<span class="nc" id="L781">        txtContratId.setText(&quot;&quot;);</span>
+<span class="nc" id="L782">        txtPrix.setText(&quot;&quot;);</span>
+<span class="nc" id="L783">        listerC();</span>
+<span class="nc" id="L784">        listerV();</span>
+
+<span class="nc" id="L786">    }//GEN-LAST:event_cmdModifierActionPerformed</span>
+
+    private void cmdDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDetailsActionPerformed
+<span class="nc" id="L789">        String nContrat = tableContrat.getValueAt(tableContrat.getSelectedRow(), 3).toString();</span>
+<span class="nc bnc" id="L790" title="All 2 branches missed.">        if (nContrat == null) {</span>
+<span class="nc" id="L791">            JOptionPane.showMessageDialog(null, &quot;Veuillez sélectionner un contrat.&quot;);</span>
+<span class="nc" id="L792">            return;</span>
+        }
+
+<span class="nc" id="L795">        Contrat contrat = contratControler.getContratByNum(nContrat);</span>
+<span class="nc bnc" id="L796" title="All 2 branches missed.">        if (contrat == null) {</span>
+<span class="nc" id="L797">            JOptionPane.showMessageDialog(null, &quot;Contrat introuvable.&quot;);</span>
+<span class="nc" id="L798">            return;</span>
+        }
+
+// Remplir les champs avec les infos du contrat
+<span class="nc" id="L802">        txtNomClient.setText(contrat.getNomC());</span>
+<span class="nc" id="L803">        txtPrenomClient.setText(contrat.getPrenomC());</span>
+<span class="nc" id="L804">        txtCINClient.setText(contrat.getCin());</span>
+<span class="nc" id="L805">        licenceConduit.setText(contrat.getLicenceConduit());</span>
+<span class="nc" id="L806">        dateChooserDebut.setDate(contrat.getDateDebut());</span>
+<span class="nc" id="L807">        dateChooserFin.setDate(contrat.getDateFin());</span>
+<span class="nc" id="L808">        txtPrix.setText(contrat.getPrix());</span>
+<span class="nc" id="L809">        txtContratId.setText(contrat.getnContrat());</span>
+
+<span class="nc bnc" id="L811" title="All 2 branches missed.">        if (&quot;Au Cours&quot;.equalsIgnoreCase(contrat.getEtatOcation())) {</span>
+<span class="nc" id="L812">            optEnCours.setSelected(true);</span>
+        } else {
+<span class="nc" id="L814">            optTerminer.setSelected(true);</span>
+        }
+
+// Trouver la voiture dans le tableau des voitures
+<span class="nc" id="L818">        modelTv.setRowCount(0);</span>
+
+<span class="nc" id="L820">        modelTv.addRow(contrat.getVoiture().toArrayContrat());</span>
+<span class="nc" id="L821">        tableVoitures.setRowSelectionInterval(0, 0);</span>
+
+
+<span class="nc" id="L824">    }//GEN-LAST:event_cmdDetailsActionPerformed</span>
+
+    private void cmdSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSupprimerActionPerformed
+      
+<span class="nc" id="L828">         String nContrat = tableContrat.getValueAt(tableContrat.getSelectedRow(), 3).toString();</span>
+<span class="nc bnc" id="L829" title="All 2 branches missed.">           if (nContrat == null) {</span>
+<span class="nc" id="L830">            JOptionPane.showMessageDialog(null, &quot;Veuillez sélectionner un contrat.&quot;);</span>
+<span class="nc" id="L831">            return;</span>
+        }
+<span class="nc" id="L833">         contratControler.deleteContrat(nContrat);</span>
+<span class="nc" id="L834">         listerC();</span>
+<span class="nc" id="L835">         listerV();</span>
+<span class="nc" id="L836">    }//GEN-LAST:event_cmdSupprimerActionPerformed</span>
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+<span class="nc" id="L839">        new Home().setVisible(true);</span>
+<span class="nc" id="L840">            this.dispose(); </span>
+<span class="nc" id="L841">    }//GEN-LAST:event_jButton1ActionPerformed</span>
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+<span class="nc" id="L844">         new GestionVoitureIHM().setVisible(true);</span>
+<span class="nc" id="L845">            this.dispose(); </span>
+<span class="nc" id="L846">    }//GEN-LAST:event_jButton2ActionPerformed</span>
+
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+<span class="nc bnc" id="L855" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L856" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L857">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L858">                    break;</span>
+                }
+            }
+<span class="nc" id="L861">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L862">            java.util.logging.Logger.getLogger(GestionContrat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L863">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L864">            java.util.logging.Logger.getLogger(GestionContrat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L865">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L866">            java.util.logging.Logger.getLogger(GestionContrat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L867">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L868">            java.util.logging.Logger.getLogger(GestionContrat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L869">        }</span>
+        //&lt;/editor-fold&gt;
+
+<span class="nc" id="L872">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+            public void run() {
+<span class="nc" id="L874">                new GestionContrat().setVisible(true);</span>
+<span class="nc" id="L875">            }</span>
+        });
+<span class="nc" id="L877">    }</span>
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup GroupeEtat;
+    private javax.swing.JPanel PanelDateDebut;
+    private javax.swing.JPanel PaneldateFin;
+    private javax.swing.JButton cmdAjouter;
+    private javax.swing.JButton cmdDetails;
+    private javax.swing.JButton cmdModifier;
+    private javax.swing.JButton cmdSupprimer;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField licenceConduit;
+    private javax.swing.JRadioButton optEnCours;
+    private javax.swing.JRadioButton optTerminer;
+    private javax.swing.JTable tableContrat;
+    private javax.swing.JTable tableVoitures;
+    private javax.swing.JTextField txtCINClient;
+    private javax.swing.JTextField txtContrat;
+    private javax.swing.JTextField txtContratId;
+    private javax.swing.JTextField txtNomClient;
+    private javax.swing.JTextField txtPrenomClient;
+    private javax.swing.JTextField txtPrix;
+    private javax.swing.JPanel txtSearchContrat;
+    private javax.swing.JTextField txtSearchVoitures;
+    // End of variables declaration//GEN-END:variables
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

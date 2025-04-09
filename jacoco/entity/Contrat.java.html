@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Contrat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GestionLocation</a> &gt; <a href="index.source.html" class="el_package">entity</a> &gt; <span class="el_source">Contrat.java</span></div><h1>Contrat.java</h1><pre class="source lang-java linenums">/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package entity;
+
+import java.util.Date;
+
+public class Contrat {
+
+    private int ID;
+    private String nomC;
+    private String prenomC;
+    private String cin;
+    private String nContrat;
+    private String etatOcation;
+    private String licenceConduit;
+    private Date dateDebut;
+    private Date dateFin;
+    private String prix;
+
+    private Voiture voiture; // Association avec la classe Voiture
+
+    // Constructeur
+    public Contrat(int ID, String nomC, String prenomC, String cin, String nContrat,
+            String etatOcation, String licenceConduit, Date dateDebut,
+<span class="fc" id="L27">            Date dateFin, String prix, Voiture voiture) {</span>
+<span class="fc" id="L28">        this.ID = ID;</span>
+<span class="fc" id="L29">        this.nomC = nomC;</span>
+<span class="fc" id="L30">        this.prenomC = prenomC;</span>
+<span class="fc" id="L31">        this.cin = cin;</span>
+<span class="fc" id="L32">        this.nContrat = nContrat;</span>
+<span class="fc" id="L33">        this.etatOcation = etatOcation;</span>
+<span class="fc" id="L34">        this.licenceConduit = licenceConduit;</span>
+<span class="fc" id="L35">        this.dateDebut = dateDebut;</span>
+<span class="fc" id="L36">        this.dateFin = dateFin;</span>
+<span class="fc" id="L37">        this.prix = prix;</span>
+<span class="fc" id="L38">        this.voiture = voiture;</span>
+<span class="fc" id="L39">    }</span>
+ public Contrat( String nomC, String prenomC, String cin, String nContrat,
+            String etatOcation, String licenceConduit, Date dateDebut,
+<span class="nc" id="L42">            Date dateFin, String prix, Voiture voiture) {</span>
+      
+<span class="nc" id="L44">        this.nomC = nomC;</span>
+<span class="nc" id="L45">        this.prenomC = prenomC;</span>
+<span class="nc" id="L46">        this.cin = cin;</span>
+<span class="nc" id="L47">        this.nContrat = nContrat;</span>
+<span class="nc" id="L48">        this.etatOcation = etatOcation;</span>
+<span class="nc" id="L49">        this.licenceConduit = licenceConduit;</span>
+<span class="nc" id="L50">        this.dateDebut = dateDebut;</span>
+<span class="nc" id="L51">        this.dateFin = dateFin;</span>
+<span class="nc" id="L52">        this.prix = prix;</span>
+<span class="nc" id="L53">        this.voiture = voiture;</span>
+<span class="nc" id="L54">    }</span>
+
+<span class="fc" id="L56">    public Contrat() {</span>
+<span class="fc" id="L57">    }</span>
+
+    // Getters et Setters
+    public int getID() {
+<span class="fc" id="L61">        return ID;</span>
+    }
+
+    public void setID(int ID) {
+<span class="fc" id="L65">        this.ID = ID;</span>
+<span class="fc" id="L66">    }</span>
+
+    public String getNomC() {
+<span class="fc" id="L69">        return nomC;</span>
+    }
+
+    public void setNomC(String nomC) {
+<span class="fc" id="L73">        this.nomC = nomC;</span>
+<span class="fc" id="L74">    }</span>
+
+    public String getPrenomC() {
+<span class="fc" id="L77">        return prenomC;</span>
+    }
+
+    public void setPrenomC(String prenomC) {
+<span class="fc" id="L81">        this.prenomC = prenomC;</span>
+<span class="fc" id="L82">    }</span>
+
+    public String getCin() {
+<span class="fc" id="L85">        return cin;</span>
+    }
+
+    public void setCin(String cin) {
+<span class="fc" id="L89">        this.cin = cin;</span>
+<span class="fc" id="L90">    }</span>
+
+    public String getnContrat() {
+<span class="fc" id="L93">        return nContrat;</span>
+    }
+
+    public void setnContrat(String nContrat) {
+<span class="fc" id="L97">        this.nContrat = nContrat;</span>
+<span class="fc" id="L98">    }</span>
+
+    public String getEtatOcation() {
+<span class="fc" id="L101">        return etatOcation;</span>
+    }
+
+    public void setEtatOcation(String etatOcation) {
+<span class="fc" id="L105">        this.etatOcation = etatOcation;</span>
+<span class="fc" id="L106">    }</span>
+
+    public String getLicenceConduit() {
+<span class="fc" id="L109">        return licenceConduit;</span>
+    }
+
+    public void setLicenceConduit(String licenceConduit) {
+<span class="fc" id="L113">        this.licenceConduit = licenceConduit;</span>
+<span class="fc" id="L114">    }</span>
+
+    public Date getDateDebut() {
+<span class="fc" id="L117">        return dateDebut;</span>
+    }
+
+    public void setDateDebut(Date dateDebut) {
+<span class="fc" id="L121">        this.dateDebut = dateDebut;</span>
+<span class="fc" id="L122">    }</span>
+
+    public Date getDateFin() {
+<span class="fc" id="L125">        return dateFin;</span>
+    }
+
+    public void setDateFin(Date dateFin) {
+<span class="fc" id="L129">        this.dateFin = dateFin;</span>
+<span class="fc" id="L130">    }</span>
+
+    public String getPrix() {
+<span class="fc" id="L133">        return prix;</span>
+    }
+
+    public void setPrix(String prix) {
+<span class="fc" id="L137">        this.prix = prix;</span>
+<span class="fc" id="L138">    }</span>
+
+    public Voiture getVoiture() {
+<span class="fc" id="L141">        return voiture;</span>
+    }
+
+    public void setVoiture(Voiture voiture) {
+<span class="fc" id="L145">        this.voiture = voiture;</span>
+<span class="fc" id="L146">    }</span>
+    
+    
+      public Object[] toArray() {
+<span class="fc" id="L150">        return new Object[]{</span>
+            nomC+&quot; &quot;+prenomC,
+            etatOcation,
+            prix,
+            nContrat};
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

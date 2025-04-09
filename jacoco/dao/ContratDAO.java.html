@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContratDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GestionLocation</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">ContratDAO.java</span></div><h1>ContratDAO.java</h1><pre class="source lang-java linenums">package dao;
+
+import entity.Contrat;
+import entity.Voiture;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ContratDAO {
+
+<span class="fc" id="L13">    VoitureDAO vDAO = new VoitureDAO();</span>
+    private final Database bd;
+
+<span class="fc" id="L16">    public ContratDAO() {</span>
+<span class="fc" id="L17">        this.bd = Database.getInstance();</span>
+<span class="fc" id="L18">    }</span>
+
+    // Créer un contrat
+    public boolean creat(Contrat c) throws SQLException {
+<span class="fc" id="L22">        String sql = &quot;INSERT INTO Contrat (VoitureID, NomC, PrenomC, Cin, NContrat, EtatOcation, LicenceConduit, DateDebut, DateFin, Prix) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;;</span>
+<span class="fc" id="L23">        try (PreparedStatement stmt = bd.getConnection().prepareStatement(sql)) {</span>
+<span class="fc" id="L24">            stmt.setInt(1, c.getVoiture().getId());</span>
+<span class="fc" id="L25">            stmt.setString(2, c.getNomC());</span>
+<span class="fc" id="L26">            stmt.setString(3, c.getPrenomC());</span>
+<span class="fc" id="L27">            stmt.setString(4, c.getCin());</span>
+<span class="fc" id="L28">            stmt.setString(5, c.getnContrat());</span>
+<span class="fc" id="L29">            stmt.setString(6, c.getEtatOcation());</span>
+<span class="fc" id="L30">            stmt.setString(7, c.getLicenceConduit());</span>
+<span class="fc" id="L31">            stmt.setDate(8, new java.sql.Date(c.getDateDebut().getTime()));</span>
+<span class="fc" id="L32">            stmt.setDate(9, new java.sql.Date(c.getDateFin().getTime()));</span>
+<span class="fc" id="L33">            stmt.setString(10, c.getPrix());</span>
+
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">            return stmt.executeUpdate() &gt; 0;</span>
+        }
+    }
+
+  
+
+    // Mettre à jour tout le contrat à partir de l’objet Contrat (avec matricule voiture)
+    public boolean update(Contrat c) throws SQLException {
+<span class="fc" id="L43">        String sqlVoiture = &quot;SELECT ID FROM Voiture WHERE Immatriculation = ?&quot;;</span>
+<span class="fc" id="L44">        String sqlUpdate = &quot;UPDATE Contrat SET VoitureID = ?, NomC = ?, PrenomC = ?, Cin = ?, NContrat = ?, EtatOcation = ?, LicenceConduit = ?, DateDebut = ?, DateFin = ?, Prix = ? WHERE NContrat = ?&quot;;</span>
+
+        try (
+<span class="fc" id="L47">                PreparedStatement stmtVoiture = bd.getConnection().prepareStatement(sqlVoiture); </span>
+<span class="fc" id="L48">                PreparedStatement stmtUpdate = bd.getConnection().prepareStatement(sqlUpdate)) {</span>
+            // Obtenir l'ID de la voiture
+<span class="fc" id="L50">            stmtVoiture.setString(1, c.getVoiture().getImmatriculation());</span>
+<span class="fc" id="L51">            ResultSet rs = stmtVoiture.executeQuery();</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            if (!rs.next()) {</span>
+<span class="nc" id="L53">                return false; // voiture non trouvée</span>
+            }
+<span class="fc" id="L55">            int voitureID = rs.getInt(&quot;ID&quot;);</span>
+
+            // Mise à jour du contrat
+<span class="fc" id="L58">            stmtUpdate.setInt(1, voitureID);</span>
+<span class="fc" id="L59">            stmtUpdate.setString(2, c.getNomC());</span>
+<span class="fc" id="L60">            stmtUpdate.setString(3, c.getPrenomC());</span>
+<span class="fc" id="L61">            stmtUpdate.setString(4, c.getCin());</span>
+<span class="fc" id="L62">            stmtUpdate.setString(5, c.getnContrat());</span>
+<span class="fc" id="L63">            stmtUpdate.setString(6, c.getEtatOcation());</span>
+<span class="fc" id="L64">            stmtUpdate.setString(7, c.getLicenceConduit());</span>
+<span class="fc" id="L65">            stmtUpdate.setDate(8, new java.sql.Date(c.getDateDebut().getTime()));</span>
+<span class="fc" id="L66">            stmtUpdate.setDate(9, new java.sql.Date(c.getDateFin().getTime()));</span>
+<span class="fc" id="L67">            stmtUpdate.setString(10, c.getPrix());</span>
+<span class="fc" id="L68">            stmtUpdate.setString(11, c.getnContrat());</span>
+
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">            return stmtUpdate.executeUpdate() &gt; 0;</span>
+<span class="nc bnc" id="L71" title="All 4 branches missed.">        }</span>
+    }
+
+    // Supprimer un contrat
+    public boolean del(String nContrat) throws SQLException {
+<span class="fc" id="L76">        String sql = &quot;DELETE FROM Contrat WHERE NContrat = ?&quot;;</span>
+<span class="fc" id="L77">        try (PreparedStatement stmt = bd.getConnection().prepareStatement(sql)) {</span>
+<span class="fc" id="L78">            stmt.setString(1, nContrat);</span>
+
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">            return stmt.executeUpdate() &gt; 0;</span>
+        }
+    }
+
+    public List&lt;Contrat&gt; getAll() throws SQLException {
+<span class="fc" id="L85">        List&lt;Contrat&gt; contrats = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L86">        String sqlContrats = &quot;SELECT * FROM Contrat&quot;;</span>
+<span class="fc" id="L87">        String sqlVoitures = &quot;SELECT * FROM Voiture&quot;;  // Requête pour récupérer toutes les voitures</span>
+
+        try (
+<span class="fc" id="L90">                Statement stmtContrats = bd.getConnection().createStatement(); ResultSet rsContrats = stmtContrats.executeQuery(sqlContrats); Statement stmtVoitures = bd.getConnection().createStatement(); ResultSet rsVoitures = stmtVoitures.executeQuery(sqlVoitures)) {</span>
+            // Créer un Map pour stocker les voitures par ID
+<span class="fc" id="L92">            Map&lt;Integer, Voiture&gt; voituresMap = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            while (rsVoitures.next()) {</span>
+<span class="fc" id="L94">                Voiture voiture = vDAO.mapResultSetToVoiture(rsVoitures);  // Assurez-vous que cette méthode existe pour mapper les résultats</span>
+<span class="fc" id="L95">                voituresMap.put(voiture.getId(), voiture);</span>
+<span class="fc" id="L96">            }</span>
+
+            // Parcours des contrats et ajout des voitures associées
+<span class="fc bfc" id="L99" title="All 2 branches covered.">            while (rsContrats.next()) {</span>
+<span class="fc" id="L100">                int voitureId = rsContrats.getInt(&quot;VoitureID&quot;);</span>
+<span class="fc" id="L101">                Voiture voiture = voituresMap.get(voitureId);  // Récupérer la voiture associée au contrat</span>
+
+<span class="fc" id="L103">                Contrat contrat = new Contrat(</span>
+<span class="fc" id="L104">                        rsContrats.getInt(&quot;ID&quot;),</span>
+<span class="fc" id="L105">                        rsContrats.getString(&quot;NomC&quot;),</span>
+<span class="fc" id="L106">                        rsContrats.getString(&quot;PrenomC&quot;),</span>
+<span class="fc" id="L107">                        rsContrats.getString(&quot;Cin&quot;),</span>
+<span class="fc" id="L108">                        rsContrats.getString(&quot;NContrat&quot;),</span>
+<span class="fc" id="L109">                        rsContrats.getString(&quot;EtatOcation&quot;),</span>
+<span class="fc" id="L110">                        rsContrats.getString(&quot;LicenceConduit&quot;),</span>
+<span class="fc" id="L111">                        rsContrats.getDate(&quot;DateDebut&quot;),</span>
+<span class="fc" id="L112">                        rsContrats.getDate(&quot;DateFin&quot;),</span>
+<span class="fc" id="L113">                        rsContrats.getString(&quot;Prix&quot;),</span>
+                        voiture
+                );
+<span class="fc" id="L116">                contrats.add(contrat);</span>
+               
+<span class="fc" id="L118">            }</span>
+        }
+<span class="fc" id="L120">        return contrats;</span>
+    }
+
+    
+
+    public List&lt;Contrat&gt; searchContrats(String searchTerm) throws SQLException {
+<span class="fc" id="L126">        List&lt;Contrat&gt; contrats = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L128">        String sql = &quot;SELECT &quot;</span>
+                + &quot;c.ID AS ContratID, c.NomC, c.PrenomC, c.Cin, c.NContrat, c.EtatOcation, c.LicenceConduit, &quot;
+                + &quot;c.DateDebut, c.DateFin, c.Prix, &quot;
+                + &quot;v.ID AS VoitureID, v.Marque, v.Modèle, v.Année, v.Immatriculation, &quot;
+                + &quot;v.TypeCarburant, v.Kilométrage, v.Couleur, v.NombrePortes, &quot;
+                + &quot;v.TypeTransmission, v.NuméroChâssis, v.Prix AS VoiturePrix, v.Etat AS VoitureEtat &quot;
+                + &quot;FROM Contrat c &quot;
+                + &quot;JOIN Voiture v ON c.VoitureID = v.ID &quot;
+                + &quot;WHERE c.NContrat LIKE ? OR c.NomC LIKE ? OR c.PrenomC LIKE ?&quot;;
+
+<span class="fc" id="L138">        try (PreparedStatement stmt = bd.getConnection().prepareStatement(sql)) {</span>
+<span class="fc" id="L139">            String searchPattern = &quot;%&quot; + searchTerm + &quot;%&quot;;</span>
+<span class="fc" id="L140">            stmt.setString(1, searchPattern);</span>
+<span class="fc" id="L141">            stmt.setString(2, searchPattern);</span>
+<span class="fc" id="L142">            stmt.setString(3, searchPattern);</span>
+
+<span class="fc" id="L144">            try (ResultSet rs = stmt.executeQuery()) {</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">                while (rs.next()) {</span>
+<span class="fc" id="L146">                    Voiture voiture = new Voiture();</span>
+<span class="fc" id="L147">                    voiture.setId(rs.getInt(&quot;VoitureID&quot;));</span>
+<span class="fc" id="L148">                    voiture.setMarque(rs.getString(&quot;Marque&quot;));</span>
+<span class="fc" id="L149">                    voiture.setModele(rs.getString(&quot;Modèle&quot;));</span>
+<span class="fc" id="L150">                    voiture.setAnnee(rs.getString(&quot;Année&quot;));</span>
+<span class="fc" id="L151">                    voiture.setImmatriculation(rs.getString(&quot;Immatriculation&quot;));</span>
+<span class="fc" id="L152">                    voiture.setTypeCarburant(rs.getString(&quot;TypeCarburant&quot;));</span>
+<span class="fc" id="L153">                    voiture.setKilometrage(rs.getString(&quot;Kilométrage&quot;));</span>
+<span class="fc" id="L154">                    voiture.setCouleur(rs.getString(&quot;Couleur&quot;));</span>
+<span class="fc" id="L155">                    voiture.setNombrePortes(rs.getString(&quot;NombrePortes&quot;));</span>
+<span class="fc" id="L156">                    voiture.setTypeTransmission(rs.getString(&quot;TypeTransmission&quot;));</span>
+<span class="fc" id="L157">                    voiture.setNumeroChâssis(rs.getString(&quot;NuméroChâssis&quot;));</span>
+<span class="fc" id="L158">                    voiture.setPrix(rs.getString(&quot;VoiturePrix&quot;));</span>
+<span class="fc" id="L159">                    voiture.setEtat(rs.getString(&quot;VoitureEtat&quot;));</span>
+
+<span class="fc" id="L161">                    Contrat contrat = new Contrat(</span>
+<span class="fc" id="L162">                            rs.getInt(&quot;ContratID&quot;),</span>
+<span class="fc" id="L163">                            rs.getString(&quot;NomC&quot;),</span>
+<span class="fc" id="L164">                            rs.getString(&quot;PrenomC&quot;),</span>
+<span class="fc" id="L165">                            rs.getString(&quot;Cin&quot;),</span>
+<span class="fc" id="L166">                            rs.getString(&quot;NContrat&quot;),</span>
+<span class="fc" id="L167">                            rs.getString(&quot;EtatOcation&quot;),</span>
+<span class="fc" id="L168">                            rs.getString(&quot;LicenceConduit&quot;),</span>
+<span class="fc" id="L169">                            rs.getDate(&quot;DateDebut&quot;),</span>
+<span class="fc" id="L170">                            rs.getDate(&quot;DateFin&quot;),</span>
+<span class="fc" id="L171">                            rs.getString(&quot;Prix&quot;),</span>
+                            voiture
+                    );
+
+<span class="fc" id="L175">                    contrats.add(contrat);</span>
+<span class="fc" id="L176">                }</span>
+            }
+        }
+
+<span class="fc" id="L180">        return contrats;</span>
+    }
+
+    
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

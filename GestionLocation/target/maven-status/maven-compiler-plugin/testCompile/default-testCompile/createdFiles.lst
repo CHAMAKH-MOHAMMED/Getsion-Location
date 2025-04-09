@@ -1,5 +1,6 @@
 testUseCase1\VoitureControllerTest.class
 testUseCase1\DatabaseTestTest.class
+Home.class
 testUseCase1\DatabaseTEST.class
 testUseCase1\VoitureTest.class
 dao\ContratDAOTest.class
