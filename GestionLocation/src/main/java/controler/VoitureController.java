@@ -4,7 +4,6 @@ import dao.VoitureDAO;
 import entity.Voiture;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public class VoitureController {
 
@@ -128,7 +127,8 @@ public class VoitureController {
         try {
             List<Voiture> voitures = voitureDAO.getAllByMarqueOrModeleD(marqueOuModele);
             if (voitures.isEmpty()) {
-                throw new SQLException("No cars found");
+                String m="NoTfound";
+                throw new SQLException(m);
             }
             return voitures;
         } catch (Exception e) {
